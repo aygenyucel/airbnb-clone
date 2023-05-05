@@ -45,6 +45,7 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px;
     height: 50px;
     cursor: pointer;
+    white-space: nowrap;
 
     .mainNavbar-middle-link {
         text-decoration: none;
@@ -72,17 +73,18 @@
 }
 
 .mainNavbar-right {
+    white-space: nowrap;
     
     .world-icon {
         height: 15px;
         margin-inline: 15px;
-        cursor: pointer;
        
     }
 
     .link-language {
         border-radius: 50px;
         height: 40px;
+        cursor: pointer;
         
         &:hover {
             background-color: var(--color-gray-lightest);
@@ -91,11 +93,11 @@
 
     .link-airbnbYourHome {
         font-weight: 700;
-        cursor: pointer;
         text-decoration: none;
         border-radius: 50px;
         height: 40px;
         padding-inline: 15px;
+        cursor: pointer;
 
         &:hover {
             background-color: var(--color-gray-lightest);
@@ -141,13 +143,23 @@
     border: 1px solid var(--color-gray-lighter);
     box-shadow: rgba(0, 0, 0, 0.067) 0px 1px 3px 2px;
     
-    div {
-        padding-inline: 20px;
+    
+
+    a {
+        text-decoration: none;
         width: 100%;
-        text-align: left;
-        padding-block: 10px;
+        color: var(--color-gray);
+        div {
+            padding-inline: 20px;
+            text-align: left;
+            padding-block: 10px;
+            cursor: pointer;
+            &:hover {
+                background-color: var(--color-gray-lightest);
+            }
+        }
         &:hover {
-            background-color: var(--color-gray-lightest);
+            color: var(--color-gray);
         }
     }
 
@@ -157,5 +169,9 @@
         width: 100%;
         padding-block: 0px;
         background-color: var(--color-gray-lighter);
+    }
+
+    .link-signup {
+        font-weight: 800;
     }
 }

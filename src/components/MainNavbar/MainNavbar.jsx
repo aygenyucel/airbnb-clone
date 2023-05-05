@@ -1,9 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './mainNavbar.scss';
 
-const MainNavbar = () => {
+const MainNavbar = (props) => {
 
   const [isProfileClicked, setIsProfileClicked] = useState(false)
+
+  const [isNavbarMiddleVisible, setIsNavbarMiddleVisible] = useState(true)
+
+  useEffect(() => {
+    if(props.isNavbarMiddleVisible !== undefined) {
+      setIsNavbarMiddleVisible(props.isNavbarMiddleVisible)
+    }
+    }, [props.isNavbarMiddleVisible])
 
   const showProfileDropdown = () => {
     if(isProfileClicked) {
@@ -25,6 +33,7 @@ const MainNavbar = () => {
             </a>
           </div>
           <div className='col-4 d-flex align-items-center justify-content-center'>
+            {isNavbarMiddleVisible && 
             <div className='mainNavbar-middle d-flex align-items-center'>
               <div className='mainNavbar-middle-link link-anywhere'>Anywhere</div>
               <div className='mainNavbar-middle-divider'/>
@@ -36,6 +45,7 @@ const MainNavbar = () => {
                 <img src="/assets/search-icon.svg" alt="search icon"/>
               </div>
             </div>
+            }
           </div>
           <div className='col-4 d-flex justify-content-end'>
             <div className='mainNavbar-right d-flex align-items-center'>
@@ -47,11 +57,19 @@ const MainNavbar = () => {
 
                 {isProfileClicked && 
                 <div className='profile-dropdown-menu d-flex flex-column align-items-start'>
-                  <div>Sign up</div>
-                  <div>Log in</div>
+                  <a href="/signup_login">
+                    <div className='link-signup'>Sign up</div>
+                  </a>
+                  <a href='/signup_login'>
+                    <div className='link-login'>Log in</div>
+                  </a>
                   <div className='profile-dropdown-menu-divider'></div>
-                  <div>Airbnb your home</div>
-                  <div>Help</div>
+                  <a href="">
+                    <div>Airbnb your home</div>
+                  </a>
+                  <a href="">
+                    <div>Help</div>
+                  </a>
                 </div>
                 }
                 
