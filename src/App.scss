@@ -5,14 +5,31 @@
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box;         /* Opera/IE 8+ */
 
-  --color-main: #FF385C;
+  --color-main: #DF135D;
   --color-gray-dark: #717171;
   --color-gray-light:#BCBCBC;
   --color-gray-lighter:#E5E3DF;
   --color-gray-lightest: #f5f5f5;
   --font-main: 'Nunito Sans', sans-serif;
   background-color: var(--color-gray-lighter);
+
 }
+
+.vertical-divider {
+  width: 1px;
+  height: 23px;
+  margin-inline: 15px;
+  background-color: var(--color-gray-lighter);
+}
+
+.horizontal-divider {
+  height: 1px;
+  width: 100%;
+  padding-block: 0px;
+  background-color: var(--color-gray-lighter);
+}
+
+
 
 .App {
   text-align: center;
