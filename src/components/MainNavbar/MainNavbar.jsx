@@ -24,7 +24,7 @@ const MainNavbar = (props) => {
   return (
       <div className="mainNavbar">
         <div className='row d-flex align-items-center justify-content-between'>
-          <div className='col-4 d-flex align-items-center justify-content-start'>
+          <div className='col-1 col-lg-4 d-flex align-items-center justify-content-start'>
             <a href="/" className="logo">
               <div className='d-flex align-items-center'>
                   <img className="airbnb-logo" src="/assets/airbnb_logo.png" alt="airbnb logo" />
@@ -32,7 +32,7 @@ const MainNavbar = (props) => {
               </div>
             </a>
           </div>
-          <div className='col-4 d-flex align-items-center justify-content-center'>
+          <div className='col col-lg-4 d-flex align-items-center justify-content-center'>
             {isNavbarMiddleVisible && 
             <div className='mainNavbar-middle d-flex align-items-center'>
               <div className='mainNavbar-middle-link link-anywhere'>Anywhere</div>
@@ -47,7 +47,7 @@ const MainNavbar = (props) => {
             </div>
             }
           </div>
-          <div className='col-4 d-flex justify-content-end'>
+          <div className='col col-lg-4 d-flex justify-content-end'>
             <div className='mainNavbar-right d-flex align-items-center'>
               <div className='link-airbnbYourHome d-flex align-items-center justify-content-center'>Airbnb your home</div>
               <div className='link-language d-flex align-items-center justify-content-center'> <img className='world-icon' src="/assets/world-icon.png" alt="world icon" /></div>
