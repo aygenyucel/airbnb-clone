@@ -32,7 +32,7 @@ const MainNavbar = (props) => {
               </div>
             </a>
           </div>
-          <div className='col col-lg-4 d-flex align-items-center justify-content-center'>
+          <div className='col col-lg-4 d-flex mainNavbar-middle-div'>
             {isNavbarMiddleVisible && 
             <div className='mainNavbar-middle d-flex align-items-center'>
               <div className='mainNavbar-middle-link link-anywhere'>Anywhere</div>
@@ -47,8 +47,8 @@ const MainNavbar = (props) => {
             </div>
             }
           </div>
-          <div className='col col-lg-4 d-flex justify-content-end'>
-            <div className='mainNavbar-right d-flex align-items-center'>
+          <div className='col col-lg-4 col-sm-4 d-flex justify-content-end'>
+            <div className='mainNavbar-right'>
               <div className='link-airbnbYourHome d-flex align-items-center justify-content-center'>Airbnb your home</div>
               <div className='link-language d-flex align-items-center justify-content-center'> <img className='world-icon' src="/assets/world-icon.png" alt="world icon" /></div>
               <div className='profile d-flex align-items-center justify-content-center' onClick={showProfileDropdown}>
