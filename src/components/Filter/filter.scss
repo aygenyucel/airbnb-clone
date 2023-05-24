@@ -14,6 +14,8 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 
+    scroll-behavior: smooth;
+
     
     .links-box {
         cursor: pointer;
@@ -22,14 +24,15 @@
         border-bottom: 2px solid transparent;
         
         img {
-            height: 23px;
-            width: 23px;
+            height: 22px;
+            width: 22px;
             margin-bottom: 7px;
-            filter: brightness(0) saturate(100%) invert(44%) sepia(9%) saturate(8%) hue-rotate(350deg) brightness(97%) contrast(84%);
-            
-        }
+            // filter: brightness(0) saturate(100%) invert(44%) sepia(9%) saturate(8%) hue-rotate(350deg) brightness(97%) contrast(84%);
+            filter: brightness(0) saturate(100%) invert(32%) sepia(6%) saturate(4%) hue-rotate(322deg) brightness(99%) contrast(95%);
+                }
         div {
             font-size: 0.8rem;
+            font-weight: 700;
             color: var(--color-gray-dark);
             white-space: nowrap;
         }
@@ -73,18 +76,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    
 
 
 }
 
 .left-arrow {
-    display: none;
-    box-shadow: 15px 11px 11px 17px rgba(255, 255, 255, 0.915);
+    // display: none;
+    box-shadow: 15px -11px 25px 17px rgba(255, 255, 255, 0.915);
     z-index:999;
+    
 }
 
 .right-arrow {    
-    box-shadow: -15px -11px 11px 17px rgb(255, 255, 255, 0.915);
+    box-shadow: -15px -11px 25px 17px rgb(255, 255, 255, 0.915);
     z-index:999;
 }
 // .left-arrow {
