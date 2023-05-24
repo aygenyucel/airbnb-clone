@@ -4,6 +4,7 @@
 }
 
 .card-img {
+    cursor: pointer;
     img {
         width: 100%;
         border-radius: 12px;
@@ -42,4 +43,19 @@
     .card-info-price {
         font-weight: 700;
     }
+}
+
+.carousel-control-prev-icon {
+    display: hidden !important;
+    border-radius: 50%;
+    height: 5px;
+    width: 5px;
+    background-size: 100%, 100%;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50%;
+    border: none !important;
 }
