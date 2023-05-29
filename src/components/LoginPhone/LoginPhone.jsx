@@ -5,6 +5,13 @@ const LoginPhone = () => {
 
     return (
         <>
+        
+        <div className="signup-login-header">
+                        Log in or sign up
+                    </div>
+                    <div className="horizontal-divider"/>
+                    <div className="signup-login-main">
+                        <div className="welcome-to-airbnb d-flex justify-content-start">Welcome to Airbnb</div>
                         <div className="login-phone-form">
                             <Form>
                                 <Form.Group className="px-3 form-group-country d-flex flex-column justify-content-center">
@@ -24,6 +31,7 @@ const LoginPhone = () => {
                         <button className="signup-login-button login-button-phone" type="submit">
                             Continue
                         </button>
+                        </div>
         </>
     )
 }

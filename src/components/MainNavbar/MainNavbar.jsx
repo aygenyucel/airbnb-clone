@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './mainNavbar.scss';
+import { useRef } from 'react';
 
 const MainNavbar = (props) => {
 
@@ -7,19 +8,37 @@ const MainNavbar = (props) => {
 
   const [isNavbarMiddleVisible, setIsNavbarMiddleVisible] = useState(true)
 
-  useEffect(() => {
-    if(props.isNavbarMiddleVisible !== undefined) {
-      setIsNavbarMiddleVisible(props.isNavbarMiddleVisible)
-    }
-    }, [props.isNavbarMiddleVisible])
+  const [clickedOutside, setClickedOutside] = useState(false);
 
-  const showProfileDropdown = () => {
+  const myRef = useRef();
+
+
+
+  const handleClickOutside = e => {
+    if (!myRef.current.contains(e.target)) {
+        setClickedOutside(true);
+        setIsProfileClicked(false)
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('mousedown', handleClickOutside)
+  }, isProfileClicked)
+
+  const handleClickInside = () => {
+    setClickedOutside(false)
     if(isProfileClicked) {
       setIsProfileClicked(false)
     } else {
       setIsProfileClicked(true)
     }
-  }
+  };
+
+
+  useEffect(() => {
+    if(props.isNavbarMiddleVisible !== undefined) {
+      setIsNavbarMiddleVisible(props.isNavbarMiddleVisible)
+    }
+    }, [props.isNavbarMiddleVisible])
 
   return (
       <div className="mainNavbar">
@@ -51,12 +70,12 @@ const MainNavbar = (props) => {
             <div className='mainNavbar-right'>
               <div className='link-airbnbYourHome d-flex align-items-center justify-content-center'>Airbnb your home</div>
               <div className='link-language d-flex align-items-center justify-content-center'> <img className='world-icon' src="/assets/world-icon.png" alt="world icon" /></div>
-              <div className='profile d-flex align-items-center justify-content-center' onClick={showProfileDropdown}>
+              <div className='profile d-flex align-items-center justify-content-center' onClick={handleClickInside}>
                 <div className='d-flex align-items-center justify-content-center'><img  className='burger-menu-icon' src="/assets/burger-menu-icon.png" alt="menu icon" /> </div>
                 <div className='d-flex align-items-center justify-content-center'><img className='profile-picture' src="/assets/profile-placeholder.jpg" alt="profile placeholder" /></div> 
 
-                {isProfileClicked && 
-                <div className='profile-dropdown-menu d-flex flex-column align-items-start'>
+                {isProfileClicked ?
+                <div className='profile-dropdown-menu d-flex flex-column align-items-start' ref={myRef}>
                   <a href="/signup_login">
                     <div className='link-signup'>Sign up</div>
                   </a>
@@ -71,7 +90,7 @@ const MainNavbar = (props) => {
                     <div>Help</div>
                   </a>
                 </div>
-                }
+                : <div ref={myRef}></div>}
                 
               </div>
               </div>

@@ -43,18 +43,14 @@ const SignupLogin = () => {
 
     return (
         <>
-            <MainNavbar isNavbarMiddleVisible = {false}/>
-            <div className="signup-login d-flex justify-content-center align-items-center">
+        <MainNavbar isNavbarMiddleVisible = {false}/>
+        <div className="fsdf">
+            
+            <div className="signup-login d-flex justify-content-center ">
                 <div className="signup-login-frame">
-                    <div className="signup-login-header">
-                        Log in or sign up
-                    </div>
-                    <div className="horizontal-divider"/>
-                    <div className="signup-login-main">
-                        <div className="welcome-to-airbnb d-flex justify-content-start">Welcome to Airbnb</div>
+                   
                         {isLoginPhone && <LoginPhone/>}
                         {isLoginEmail && <LoginEmail/>}
-
                         <div className="d-flex align-items-center justify-content-center">
                             <div className="other-options-divider me-3"/>
                             <div style={{fontSize:"0.8rem", marginBlock: "16px"}}>or</div>
@@ -104,10 +100,10 @@ const SignupLogin = () => {
                                 </div>}
                                 
                         </div>
-                    </div>
                 </div>
 
             </div>
+        </div>
         </>
     )
 }
