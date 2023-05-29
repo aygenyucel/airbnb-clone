@@ -1,12 +1,17 @@
 .filter-div {
-    height: 78px;
-    margin-top: 25px;
+    height: 67px;
+    margin-block: 25px;
     width: 100%;
     padding-inline: 40px;
-    
+    // position: fixed;
+    background-color: white;
+    z-index: 999;
 }
 
-
+// .filler {
+//     height: 78px;
+//     margin-top: 50px;
+// }
 
 .filter-categories {
     width: 100%;

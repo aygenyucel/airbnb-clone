@@ -1,0 +1,28 @@
+.login-email-form {
+    border: 2px solid black;
+    border-radius: 10px;
+
+    .form-divider {
+        width: 100%;
+        border-bottom: 1px solid var(--color-gray-light);
+    }
+
+    .form-group-email{
+        height: 60px;
+    }
+}
+.input-email-header {
+    font-size: 0.8rem;
+    color: #808080;
+}
+
+.input-email {
+    border: none !important;
+    padding: 0px !important; 
+
+    :focus {
+        outline: none !important;
+        outline-style: none !important;
+    }
+    
+}

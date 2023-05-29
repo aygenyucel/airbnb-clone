@@ -25,6 +25,7 @@ const Filter = () => {
     }
     
     return (
+        <>
         <div className="filter-div d-flex align-items-center">
             {scrollX > 0 && (
                 <div className="left-arrow" onClick={() => slide(-ref.current.offsetWidth)}>
@@ -53,6 +54,8 @@ const Filter = () => {
             </div>
             
         </div>
+        <div className="filler"></div>
+        </>
     )
 }
 
