@@ -14,14 +14,14 @@ const LoginPhone = () => {
                         <div className="welcome-to-airbnb d-flex justify-content-start">Welcome to Airbnb</div>
                         <div className="login-phone-form">
                             <Form>
-                                <Form.Group className="px-3 form-group-country d-flex flex-column justify-content-center">
+                                <Form.Group className="px-3 form-group form-group-country d-flex flex-column justify-content-center">
                                     <div className="input-country-header d-flex justify-content-start">Country/Region</div>
                                     <input className="form-control input-country shadow-none" placeholder="Turkey(+90)" />
                                     {/* <Form.Control placeholder="Turkey(+90)"/> */}
                                 </Form.Group>
                                 <div className="form-divider" />
 
-                                <Form.Group className="px-3 form-group-phone d-flex align-items-center">
+                                <Form.Group className="px-3 form-group form-group-phone d-flex align-items-center">
                                     <Form.Control className="input-phone shadow-none" type="number" placeholder="Phone number" />
                                 </Form.Group>
 

@@ -11,12 +11,12 @@
         height: 60px;
     }
 }
-.input-email-header {
+.form-header{
     font-size: 0.8rem;
     color: #808080;
 }
 
-.input-email {
+.form-input {
     border: none !important;
     padding: 0px !important; 
 
@@ -25,4 +25,31 @@
         outline-style: none !important;
     }
     
+}
+
+.form-group-div {
+    border: 1px solid var(--color-gray-light);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.input-explanation {
+    font-size: 0.8rem;
+    margin-top: 6px;
+    margin-bottom: 22px;
+    color: var(--color-gray-dark);
+    text-align: start;
+}
+
+.privacy-policy-signup {
+    text-align: start;
+    font-size: 0.8rem;
+    margin-top: 22px;
+    color: var(--color-gray-darkest);
+    a {
+        font-weight: 700;
+        text-decoration: none;
+        text-decoration: underline;
+        color: var(--color-blue-link);
+    }
 }
