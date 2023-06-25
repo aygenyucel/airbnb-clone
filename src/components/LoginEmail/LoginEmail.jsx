@@ -14,6 +14,7 @@ const LoginEmail = () => {
 
     const navigate = useNavigate();
 
+
     const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL
 
     const checkEmailAndSubmit = (event) => {
@@ -111,6 +112,18 @@ const LoginEmail = () => {
         })
     }
 
+    const loginSubmit = (e) => {
+        e.preventDefault();
+        const user = {
+            email: email,
+            password: password
+        }
+
+        signupLoginEmail(user)
+        .then(() => navigate("/"))
+        .catch((error) => console.log(error))
+    }
+
     return (
         <>
                         <div className="signup-login-header">
@@ -123,18 +136,18 @@ const LoginEmail = () => {
                             {isEmailExist ?
                                 <>
                                     <div className="signup-login-main">
-                                        <div className="login-email-form">
-                                            <Form>
-                                                <Form.Group className="px-3 form-group-email d-flex flex-column justify-content-center">
-                                                    <div className="input-password-header form-header d-flex justify-content-start">Password</div>
-                                                    
-                                                    <Form.Control className="input-password form-input shadow-none" type="password" placeholder="Password" required/>
-                                                </Form.Group>
-                                            </Form>
-                                        </div>
-                                        <button className="signup-login-button form-button login-button-email" type="submit" onClick={() => {checkEmailAndSubmit()} }>
-                                            Login
-                                        </button>
+                                        <Form onSubmit={loginSubmit}>
+                                            <div className="login-email-form">
+                                                    <Form.Group className="px-3 form-group-email d-flex flex-column justify-content-center">
+                                                        <div className="input-password-header form-header d-flex justify-content-start">Password</div>
+                                                        
+                                                        <Form.Control className="input-password form-input shadow-none" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required/>
+                                                    </Form.Group>
+                                            </div>
+                                            <button className="signup-login-button form-button login-button-email" type="submit">
+                                                Login
+                                            </button>
+                                        </Form>
                                     </div>
                                 </>
 
