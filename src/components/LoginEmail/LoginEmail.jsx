@@ -3,11 +3,57 @@ import "./loginEmail.scss";
 import { useState } from "react";
 
 const LoginEmail = () => {
-    const [isEmailExist, setIsEmailExist] = useState(false)
+    const [isEmailExist, setIsEmailExist] = useState(true)
     const [isContinueClicked, setIsContinueClicked] = useState(false)
+    const [email, setEmail] = useState("")
 
-    const checkEmailAndSubmit = () => {
-        setIsContinueClicked(true);
+    const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL
+
+    const checkEmailAndSubmit = (event) => {
+        // setIsContinueClicked(true)
+        event.preventDefault();
+        console.log("xxxxxxxxx", email)
+        const newEmail = {
+            email: email
+        }
+        checkEmailExist(newEmail).then(setIsContinueClicked(true));
+    }
+
+    //check if email exist
+    const checkEmailExist = (email) => {
+        
+        return new Promise(async(resolve,reject) => {
+            const options = {
+                method: "POST",
+                body: JSON.stringify(email),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+            try {
+                const response = await fetch(`${BE_DEV_URL}/users/checkEmailExist`, options)
+
+                if(response.ok){
+                    const data = await response.json();
+                    const email = data;
+                    console.log("email exist! =>", email)
+                    setIsEmailExist(true)
+                    resolve({})
+                } else {
+                    console.log("email not exist! =>", email);
+                    setIsEmailExist(false)
+                    // response.text()
+                    
+                    // .then(text => {
+                    //     throw new Error(text)
+                    // })
+                }
+                
+            } catch (error) {
+                console.log("🚀 error", error)
+                reject(error)
+            }
+        })
     }
 
     return (
@@ -72,7 +118,7 @@ const LoginEmail = () => {
                                                         <Form.Group className="px-3 form-group form-group-email d-flex flex-column justify-content-center">
                                                             <div className="input-email-header form-header d-flex justify-content-start">Email</div>
                                                             
-                                                            <Form.Control className="input-email form-input shadow-none" type="email" placeholder="Email" />
+                                                            <Form.Control className="input-email form-input shadow-none" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                                         </Form.Group>
                                                     </div>
                                                     <div className="input-explanation">We'll email you trip confirmations and receipts.</div>
@@ -100,18 +146,18 @@ const LoginEmail = () => {
                         <>
                             <div className="signup-login-main">
                                 <div className="welcome-to-airbnb d-flex justify-content-start">Welcome to Airbnb</div>
-                                <div className="login-email-form">
-                                    <Form>
-                                        <Form.Group className="px-3 form-group form-group-email d-flex flex-column justify-content-center">
-                                            <div className="input-email-header d-flex justify-content-start">Email</div>
-                                            
-                                            <Form.Control className="input-email shadow-none form-input" type="email" placeholder="Email" />
-                                        </Form.Group>
+                                    <Form onSubmit={checkEmailAndSubmit}>
+                                        <div className="login-email-form">
+                                            <Form.Group className="px-3 form-group form-group-email d-flex flex-column justify-content-center">
+                                                <div className="input-email-header d-flex justify-content-start">Email</div>
+                                                
+                                                <Form.Control className="input-email shadow-none form-input" type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+                                            </Form.Group>
+                                        </div>
+                                        <button className="signup-login-button login-button-email" type="submit">
+                                            Continue
+                                        </button>
                                     </Form>
-                                </div>
-                                <button className="signup-login-button login-button-email" type="submit" onClick={() => {checkEmailAndSubmit()} }>
-                                    Continue
-                                </button>
                             </div>
                         </>}
                         
