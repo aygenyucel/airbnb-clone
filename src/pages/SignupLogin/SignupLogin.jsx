@@ -4,15 +4,22 @@ import './signupLogin.scss'
 import LoginPhone from "../../components/LoginPhone/LoginPhone.jsx";
 import { useState } from "react";
 import LoginEmail from "../../components/LoginEmail/LoginEmail";
+import { useEffect } from "react";
 
-const SignupLogin = () => {
+const SignupLogin = (props) => {
+
+    const redirectEmailLogin = props.redirectEmailLogin;
+
+
 
     const [isLoginEmail, setIsLoginEmail] = useState(false);
     const [isLoginPhone, setIsLoginPhone] = useState(true);
     const [isLoginApple, setIsLoginApple] = useState(false);
     const [isLoginGoogle, setIsLoginGoogle] = useState(true);
-    
 
+    useEffect(() => {
+        setIsLoginEmail(redirectEmailLogin)
+    }, [redirectEmailLogin])
 
     const changeLoginType = (loginType) => {
         if(loginType === "email") {

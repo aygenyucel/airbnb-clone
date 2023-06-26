@@ -2,10 +2,14 @@ import { Form } from "react-bootstrap";
 import "./loginEmail.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { checkEmailExistAction } from "../../redux/actions";
 
 const LoginEmail = () => {
-    const [isEmailExist, setIsEmailExist] = useState(true)
-    const [isContinueClicked, setIsContinueClicked] = useState(false)
+    const [isEmailExist, setIsEmailExist] = useState(true);
+
+    //if user trying to continue with existed email while signup, redirect user to login with email component
+    const [isRedirectFromSignup, setIsRedirectFromSignup] = useState(false)
+    const [isContinueClicked, setIsContinueClicked] = useState(false);
     const [email, setEmail] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -21,47 +25,20 @@ const LoginEmail = () => {
         // setIsContinueClicked(true)
         event.preventDefault();
         console.log("xxxxxxxxx", email)
-        const newEmail = {
-            email: email
-        }
-        checkEmailExist(newEmail).then(setIsContinueClicked(true));
-    }
-
-    //check if email exist
-    const checkEmailExist = (email) => {
         
-        return new Promise(async(resolve,reject) => {
-            const options = {
-                method: "POST",
-                body: JSON.stringify(email),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }
-            try {
-                const response = await fetch(`${BE_DEV_URL}/users/checkEmailExist`, options)
-
-                if(response.ok){
-                    const data = await response.json();
-                    const email = data;
-                    console.log("email exist! =>", email)
-                    setIsEmailExist(true)
-                    resolve({})
-                } else {
-                    console.log("email not exist! =>", email);
-                    setIsEmailExist(false)
-                    // response.text()
-                    
-                    // .then(text => {
-                    //     throw new Error(text)
-                    // })
-                }
-                
-            } catch (error) {
-                console.log("🚀 error", error)
-                reject(error)
+        checkEmailExistAction(email)
+        .then(email => {
+            if(email !== null){
+                setIsEmailExist(true)
+                setIsContinueClicked(true)
+            } else {
+                setIsEmailExist(false)
+                setIsContinueClicked(true)
             }
         })
+        .catch(error => {
+            console.log(error)
+        });
     }
 
     const signupSubmit = (event) => {
@@ -73,10 +50,19 @@ const LoginEmail = () => {
             birthDate: birthDate,
             password: password
         }
-
-        signupLoginEmail(newUser)
-        .then(() => navigate("/"))
-        .catch((error) => console.log(error))
+        checkEmailExistAction(email).then(email => {
+            if(email === null) {
+                signupLoginEmail(newUser)
+                .then(() => navigate("/"))
+                .catch((error) => console.log(error))
+            }
+            else {
+                setIsEmailExist(true);
+                setIsRedirectFromSignup(true)
+                navigate("/signup_login", {state:{redirectEmailLogin: true}})
+            }
+        })
+       
     }
 
     const signupLoginEmail = (user) => {
@@ -127,21 +113,27 @@ const LoginEmail = () => {
     return (
         <>
                         <div className="signup-login-header">
-                            {isContinueClicked ? <>{isEmailExist ? "Log in" : "Finish signing up"}</> : "Log in or sign up"}
+                            {isContinueClicked ? <>{isEmailExist ? <>{isRedirectFromSignup ? "Account Exists" : "Log in"}</> : "Finish signing up"}</> : "Log in or sign up"}
                         </div>
                         <div className="horizontal-divider"/>
                        
                         {isContinueClicked ? 
                         <>
                             {isEmailExist ?
-                                <>
+                            <>
+                                
                                     <div className="signup-login-main">
+                                        {isRedirectFromSignup &&
+                                        <div className="d-flex flex-column justify-content-center account-exist"> 
+                                            <div className="mb-3">Looks like you already have an account. Please log in instead.</div>
+                                            <div>{email}</div>
+                                        </div> }
                                         <Form onSubmit={loginSubmit}>
                                             <div className="login-email-form">
                                                     <Form.Group className="px-3 form-group-email d-flex flex-column justify-content-center">
                                                         <div className="input-password-header form-header d-flex justify-content-start">Password</div>
                                                         
-                                                        <Form.Control className="input-password form-input shadow-none" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required/>
+                                                        <Form.Control className="input-password form-input shadow-none" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                                                     </Form.Group>
                                             </div>
                                             <button className="signup-login-button form-button login-button-email" type="submit">
@@ -149,8 +141,7 @@ const LoginEmail = () => {
                                             </button>
                                         </Form>
                                     </div>
-                                </>
-
+                            </>
                             :
                             <>
                                     <div className="signup-login-main">
@@ -185,7 +176,9 @@ const LoginEmail = () => {
                                                                 <div className="input-email-header form-header d-flex justify-content-start">Email</div>
                                                                 
                                                                 <Form.Control className="input-email form-input shadow-none" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                                                
                                                             </Form.Group>
+                                                            
                                                         </div>
                                                         <div className="input-explanation">We'll email you trip confirmations and receipts.</div>
                                                         <div className="form-group-div">

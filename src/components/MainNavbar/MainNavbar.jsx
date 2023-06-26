@@ -15,7 +15,7 @@ const MainNavbar = (props) => {
 
 
   const handleClickOutside = e => {
-    if (!myRef.current.contains(e.target)) {
+    if (!myRef?.current?.contains(e.target)) {
         setClickedOutside(true);
         setIsProfileClicked(false)
     }
