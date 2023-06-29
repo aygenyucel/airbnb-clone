@@ -10,4 +10,4 @@ const store = configureStore({
     reducer: reducers
 })
 
-export default store
+export default store;

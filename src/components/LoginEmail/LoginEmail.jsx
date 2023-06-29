@@ -2,7 +2,8 @@ import { Form } from "react-bootstrap";
 import "./loginEmail.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { checkEmailExistAction } from "../../redux/actions";
+import { checkEmailExistAction, signupLoginEmailAction } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const LoginEmail = () => {
     const [isEmailExist, setIsEmailExist] = useState(true);
@@ -17,9 +18,7 @@ const LoginEmail = () => {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
-
-
-    const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL
+    const dispatch = useDispatch();
 
     const checkEmailAndSubmit = (event) => {
         // setIsContinueClicked(true)
@@ -52,7 +51,10 @@ const LoginEmail = () => {
         }
         checkEmailExistAction(email).then(email => {
             if(email === null) {
-                signupLoginEmail(newUser)
+                signupLoginEmailAction(newUser)
+                .then(({dispatchAction1, dispatchAction2}) => {
+                    dispatch(dispatchAction1, dispatchAction2)
+                    })
                 .then(() => navigate("/"))
                 .catch((error) => console.log(error))
             }
@@ -65,39 +67,6 @@ const LoginEmail = () => {
        
     }
 
-    const signupLoginEmail = (user) => {
-        return new Promise(async (resolve, reject) => {
-
-            const options = {
-                method: "POST",
-                body: JSON.stringify(user),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }
-
-            try {
-                const response = await fetch(`${BE_DEV_URL}/users/signupLoginEmail`, options)
-                if(response.ok) {
-                    const data = await response.json();
-                    const {JWTToken} = data;
-                    console.log("JWTToken =>", JWTToken )
-                    resolve({})
-                } else {
-                    response.text().then(text => {
-                        throw new Error(text)
-                    })
-
-                    console.log("Ops, something went wrong")
-
-                }
-            } catch (error) {
-                console.log("🚀 error", error)
-                reject(error)
-            }
-        })
-    }
-
     const loginSubmit = (e) => {
         e.preventDefault();
         const user = {
@@ -105,7 +74,10 @@ const LoginEmail = () => {
             password: password
         }
 
-        signupLoginEmail(user)
+        signupLoginEmailAction(user)
+        .then(({dispatchAction1, dispatchAction2}) => {
+            dispatch(dispatchAction1, dispatchAction2)
+            })
         .then(() => navigate("/"))
         .catch((error) => console.log(error))
     }

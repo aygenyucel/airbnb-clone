@@ -22,7 +22,7 @@ const LoginPhone = () => {
                                 <div className="form-divider" />
 
                                 <Form.Group className="px-3 form-group form-group-phone d-flex align-items-center">
-                                    <Form.Control className="input-phone shadow-none" type="number" placeholder="Phone number" />
+                                    <Form.Control className="input-phone shadow-none" type="phone" pattern="[0-9]*" placeholder="Phone number" />
                                 </Form.Group>
 
                             </Form>
