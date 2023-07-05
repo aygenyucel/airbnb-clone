@@ -1,18 +1,35 @@
 import { useEffect, useState } from 'react';
 import './mainNavbar.scss';
 import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { isAuthorizedAction } from '../../redux/actions';
 
 const MainNavbar = (props) => {
 
   const [isProfileClicked, setIsProfileClicked] = useState(false)
-
   const [isNavbarMiddleVisible, setIsNavbarMiddleVisible] = useState(true)
-
   const [clickedOutside, setClickedOutside] = useState(false);
 
   const myRef = useRef();
 
+  const dispatch = useDispatch();
+  const JWTToken = localStorage.getItem("JWTToken");
+  const userData = useSelector(state => state.userReducer?.data);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
+  useEffect(() => {
+    //check if user authorized
+    isAuthorizedAction(userData, JWTToken, dispatch)
+    .then((boolean) => {
+      if(boolean === true) {
+        setIsAuthorized(true)
+      }
+      else {
+        setIsAuthorized(false)
+      }
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleClickOutside = e => {
     if (!myRef?.current?.contains(e.target)) {
@@ -22,7 +39,7 @@ const MainNavbar = (props) => {
   };
   useEffect(() => {
     window.addEventListener('mousedown', handleClickOutside)
-  }, isProfileClicked)
+  }, [isProfileClicked])
 
   const handleClickInside = () => {
     setClickedOutside(false)
@@ -39,6 +56,12 @@ const MainNavbar = (props) => {
       setIsNavbarMiddleVisible(props.isNavbarMiddleVisible)
     }
     }, [props.isNavbarMiddleVisible])
+
+  const logOut = () => {
+    if(JWTToken){
+      localStorage.removeItem("JWTToken")
+    }
+  }
 
   return (
       <div className="mainNavbar">
@@ -74,23 +97,61 @@ const MainNavbar = (props) => {
                 <div className='d-flex align-items-center justify-content-center'><img  className='burger-menu-icon' src="/assets/burger-menu-icon.png" alt="menu icon" /> </div>
                 <div className='d-flex align-items-center justify-content-center'><img className='profile-picture' src="/assets/profile-placeholder.jpg" alt="profile placeholder" /></div> 
 
+                
                 {isProfileClicked ?
-                <div className='profile-dropdown-menu d-flex flex-column align-items-start' ref={myRef}>
-                  <a href="/signup_login">
-                    <div className='link-signup'>Sign up</div>
-                  </a>
-                  <a href='/signup_login'>
-                    <div className='link-login'>Log in</div>
-                  </a>
-                  <div className='profile-dropdown-menu-divider'></div>
-                  <a href="">
-                    <div>Airbnb your home</div>
-                  </a>
-                  <a href="">
-                    <div>Help</div>
-                  </a>
-                </div>
+                <>
+                  {isAuthorized ? 
+                  // if user already logged in 
+                  <div className='profile-dropdown-menu d-flex flex-column align-items-start' ref={myRef}>
+                    <a href="">
+                      <div><b>Messages</b></div>
+                    </a>
+                    <a href="">
+                      <div><b>Notifications</b></div>
+                    </a>
+                    <a href="">
+                      <div><b>Trips</b></div>
+                    </a>
+                    <a href="">
+                      <div><b>Wishlists</b></div>
+                    </a>
+                    <div className='profile-dropdown-menu-divider'></div>
+                    <a href="">
+                      <div>Manage listings</div>
+                    </a>
+                    <a href="">
+                      <div>Refer a Host</div>
+                    </a>
+                    <a href="">
+                      <div>Account</div>
+                    </a>
+                    <div className='profile-dropdown-menu-divider'></div>
+                    <a href="">
+                      <div>Help</div>
+                    </a>
+                    <a href="" onClick={() => {logOut()}}>
+                      <div>Log out</div>
+                    </a>
+                  </div>
+                  : 
+                  <div className='profile-dropdown-menu d-flex flex-column align-items-start' ref={myRef}>
+                    <a href="/signup_login">
+                      <div className='link-signup'>Sign up</div>
+                    </a>
+                    <a href='/signup_login'>
+                      <div className='link-login'>Log in</div>
+                    </a>
+                    <div className='profile-dropdown-menu-divider'></div>
+                    <a href="">
+                      <div>Airbnb your home</div>
+                    </a>
+                    <a href="">
+                      <div>Help</div>
+                    </a>
+                  </div>}
+              </>
                 : <div ref={myRef}></div>}
+                
                 
               </div>
               </div>

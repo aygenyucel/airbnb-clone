@@ -3,7 +3,7 @@ import userReducer from "../reducers/userReducer";
 import { configureStore } from "@reduxjs/toolkit";
 
 const reducers = combineReducers({
-    user: userReducer
+    userReducer: userReducer
 })
 
 const store = configureStore({

@@ -103,3 +103,49 @@ export const signupLoginEmailAction = (user) => {
         }
     })
 }
+
+export const isAuthorizedAction = (userData, JWTToken, dispatch) => {
+    return new Promise(async (resolve, reject) => {
+        if(JWTToken) {
+            if(userData){
+                resolve(true)
+            } else {
+                const options = {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer "+ JWTToken
+                    }
+                }
+
+                try {
+                    const response = await fetch(`${BE_DEV_URL}/users/me`, options)
+
+                    if(response.ok) {
+                        const userData = await response.json();
+                        console.log("actionnn", userData)
+                        dispatch({
+                            type: GET_USER,
+                            payload: userData
+                        })
+                        dispatch({
+                            type: GET_USER_ID,
+                            payload: userData._id
+                        })
+
+                        resolve(true)
+
+                    } else {
+                        resolve(false)
+                    }
+                    
+                } catch (error) {
+                    console.log("Error: ", error)
+                    reject(error)
+                }
+            }
+        } else {
+            resolve(false)
+        }
+    })
+}

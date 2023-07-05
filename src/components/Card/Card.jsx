@@ -19,7 +19,7 @@ const Card = () => {
             <Carousel interval={null}>
                 {
                     slideImages.map((img, index) => (
-                        <Carousel.Item>
+                        <Carousel.Item key={index}>
                             <div className="card-img">
                                 <img
                                 className="d-block w-100"
