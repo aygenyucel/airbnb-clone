@@ -8,14 +8,13 @@ import { useEffect } from "react";
 import { isAuthorizedAction } from "../../redux/actions";
 
 const Home = () => {
-    const dispatch = useDispatch();
-    const JWTToken = localStorage.getItem("JWTToken");
     const userData = useSelector(state => state.userReducer?.data);
     const [isAuthorized, setIsAuthorized] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         //checking if user authorized on first render
-        isAuthorizedAction(userData, JWTToken, dispatch)
+        isAuthorizedAction(userData, dispatch)
         .then((boolean) => {
             if(boolean === true) {
                 setIsAuthorized(true)

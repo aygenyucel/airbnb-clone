@@ -11,15 +11,13 @@ const MainNavbar = (props) => {
   const [clickedOutside, setClickedOutside] = useState(false);
 
   const myRef = useRef();
-
-  const dispatch = useDispatch();
-  const JWTToken = localStorage.getItem("JWTToken");
   const userData = useSelector(state => state.userReducer?.data);
   const [isAuthorized, setIsAuthorized] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     //check if user authorized
-    isAuthorizedAction(userData, JWTToken, dispatch)
+    isAuthorizedAction(userData, dispatch)
     .then((boolean) => {
       if(boolean === true) {
         setIsAuthorized(true)
@@ -58,6 +56,7 @@ const MainNavbar = (props) => {
     }, [props.isNavbarMiddleVisible])
 
   const logOut = () => {
+    const JWTToken = localStorage.getItem("JWTToken");
     if(JWTToken){
       localStorage.removeItem("JWTToken")
     }
