@@ -16,21 +16,27 @@ const Card = () => {
                 <img src="https://a0.muscache.com/im/pictures/miso/Hosting-668146487515150072/original/8ff2a532-e0cd-41a2-9164-554c4d9eb28a.jpeg?im_w=960" alt="" />
 
             </div> */}
-            <Carousel interval={null}>
-                {
-                    slideImages.map((img, index) => (
-                        <Carousel.Item key={index}>
-                            <div className="card-img">
-                                <img
-                                className="d-block w-100"
-                                src={img}
-                                alt="First slide"
-                                />
-                            </div>
-                        </Carousel.Item>
-                    ))
-                }
-            </Carousel>
+            <div className="position-relative">
+                <div className="favourite-icon-div position-absolute">
+                    <img className="favourite-icon" src="/assets/heart-icon.svg" alt="favourite-icon" />
+                </div>
+
+                <Carousel interval={null}>
+                    {
+                        slideImages.map((img, index) => (
+                            <Carousel.Item key={index}>
+                                <div className="card-img">
+                                    <img
+                                    className="d-block w-100"
+                                    src={img}
+                                    alt="First slide"
+                                    />
+                                </div>
+                            </Carousel.Item>
+                        ))
+                    }
+                </Carousel>
+            </div>
             
             <div className="card-info d-flex flex-column">
                 <div className="d-flex justify-content-between">
