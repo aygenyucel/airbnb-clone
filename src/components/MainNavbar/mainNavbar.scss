@@ -8,6 +8,14 @@
     border-bottom: 1px solid var(--color-gray-lighter);
 
     white-space: nowrap;
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    a:hover{
+        text-decoration: none;
+        color: black;
+    }
 
     
 }
@@ -130,7 +138,7 @@
         }
     }
 
-    .link-airbnbYourHome {
+    .link-airbnbYourHome, .link-switchToHosting{
         font-weight: 700;
         text-decoration: none;
         border-radius: 50px;
@@ -161,8 +169,13 @@
     
         .profile-picture {
             height: 30px;
+            width: 30px;
             border-radius: 50px;
             margin-left: 15px;
+            background-color: black;
+            color: white;
+            font-size: 0.6rem;
+            user-select: none;
         }
 
         &:hover {

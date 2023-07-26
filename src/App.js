@@ -1,4 +1,5 @@
 import './App.scss';
+import BecomeHost from './pages/BecomeHost/BecomeHost';
 import Home from './pages/Home/Home';
 import SignupLogin from './pages/SignupLogin/SignupLogin';
 import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -11,7 +12,12 @@ function App() {
         <Routes>
           <Route path='/' exact element= {<Home/>} />
           <Route path='/signup_login' element= {<SignupLogin/>} />
+          <Route path='/become-a-host' element= {<BecomeHost/>}>
+            <Route path='structure' element= {<BecomeHost/>}/>
+            <Route path='privacy-type'element= {<BecomeHost />}/>
+          </Route>
         </Routes>
+
       </div>
     </BrowserRouter>
   );

@@ -90,11 +90,23 @@ const MainNavbar = (props) => {
           </div>
           <div className='col col-lg-4 col-sm-4 d-flex justify-content-end'>
             <div className='mainNavbar-right'>
-              <div className='link-airbnbYourHome d-flex align-items-center justify-content-center'>Airbnb your home</div>
+              {/* {isAuthorized ?
+              <div className='link-switchToHosting d-flex align-items-center justify-content-center'>Switch to hosting</div> 
+              :
+              <div className='link-airbnbYourHome d-flex align-items-center justify-content-center'>Airbnb your home</div> 
+              } */}
+              <a href='/become-a-host'>
+                <div className='link-airbnbYourHome d-flex align-items-center justify-content-center'>Airbnb your home</div> 
+              </a>
+
               <div className='link-language d-flex align-items-center justify-content-center'> <img className='world-icon' src="/assets/world-icon.png" alt="world icon" /></div>
               <div className='profile d-flex align-items-center justify-content-center' onClick={handleClickInside}>
                 <div className='d-flex align-items-center justify-content-center'><img  className='burger-menu-icon' src="/assets/burger-menu-icon.png" alt="menu icon" /> </div>
+                {isAuthorized ? 
+                <div className='d-flex align-items-center justify-content-center profile-picture'>{(userData.name)[0].toUpperCase()}</div> 
+                :
                 <div className='d-flex align-items-center justify-content-center'><img className='profile-picture' src="/assets/profile-placeholder.jpg" alt="profile placeholder" /></div> 
+                }
 
                 
                 {isProfileClicked ?
@@ -115,8 +127,8 @@ const MainNavbar = (props) => {
                       <div><b>Wishlists</b></div>
                     </a>
                     <div className='profile-dropdown-menu-divider'></div>
-                    <a href="">
-                      <div>Manage listings</div>
+                    <a href="/become-a-host">
+                      <div>Airbnb your home</div>
                     </a>
                     <a href="">
                       <div>Refer a Host</div>

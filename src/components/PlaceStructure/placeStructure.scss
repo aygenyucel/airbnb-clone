@@ -1,0 +1,19 @@
+.place-structure {
+    max-width: 700px;
+    padding-inline: 35px;
+}
+
+.place-structure-option {
+    text-align: left;
+    padding: 20px;
+    border: 1px solid var(--color-gray-lighter);
+    border-radius: 10px;
+}
+
+.place-question {
+    width: 70%;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: left;
+    line-height: 35px;
+}
