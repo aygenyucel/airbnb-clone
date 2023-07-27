@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import BecomeHostNavbar from "../../components/BecomeHostNavbar/BecomeHostNavbar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { links } from "../../assets/images-links.js"
 import "./becomeHost.scss"
@@ -11,9 +11,12 @@ const BecomeHost = () => {
     const path = location.pathname.slice(location.pathname.lastIndexOf("/"))
     const navigate = useNavigate();
 
+    const [structure, setStructure] = useState(null);
+    const [privacyType, setPrivacyType] = useState(null)
+
     useEffect(() => {
-        console.log(path)
-    }, [])
+        console.log(privacyType)
+    }, [privacyType])
 
     const startForm = () => {
         navigate("structure")
@@ -22,11 +25,17 @@ const BecomeHost = () => {
     
     const submitStructureAndNext= () => {
         //TODO: save the selected structure
-        navigate("/become-a-host/privacy-type")
+        if(structure) {
+            navigate("/become-a-host/privacy-type")
+        }
+        
     }
 
     const submitPrivacyTypeAndNext = () => {
-        navigate("/become-a-host/location")
+        if(privacyType) {
+            navigate("/become-a-host/location")
+        }
+        
     }
     const submitLocationAndNext = () => {
         navigate("/become-a-host/floor-plan")
@@ -64,7 +73,7 @@ const BecomeHost = () => {
                         </div>
                        
                     </div>
-                    <Button onClick={() => startForm()}>Next</Button>
+                    <Button onClick={() => startForm()}>Get started</Button>
                 </div>
                 }
                 <div className="become-host-frame d-flex flex-column ">
@@ -75,15 +84,18 @@ const BecomeHost = () => {
                         <div className="place-question col-12 d-flex justify-content-left align-items-left mb-3"> 
                             Which of these best describes your place?
                         </div>
-                        {links.map((structure) => {
-                            return (<div className="col-6 col-sm-4 ">
-                                        <div className=" place-structure-option d-flex flex-column justify-content-left align-items-left">
-
-                                            <div>
-                                                <img  src={structure.imgSrc} alt={structure.label} style={{ height: "35px" }} />
-                                            </div>
-                                            <div>{structure.label}</div>
-                                        </div>
+                        {links.map((link) => {
+                            return (<div className="col-6 col-sm-4">
+                                        <Form>
+                                            <Form.Group>
+                                                <div className={link.label === structure ?"place-structure-option selected-structure" : "place-structure-option"} onClick={() => {structure !== link.label ? setStructure(link.label) : setStructure(null)}}>
+                                                    <div>
+                                                        <img  src={link.imgSrc} alt={link.label} style={{ height: "35px" }} />
+                                                    </div>
+                                                    <div>{link.label}</div>
+                                                </div>
+                                            </Form.Group>
+                                        </Form>
                                     </div> )
                         })}
                     </div>
@@ -97,20 +109,23 @@ const BecomeHost = () => {
                         <div className="place-question col-12 d-flex justify-content-left align-items-left mb-3"> 
                             What type of place will guests have?
                         </div>
-                        <div className="col-12">
-                            <div className=" privacy-type-option form-option d-flex flex-column justify-content-left align-items-left">
+                        <div className={"col" + (structure === "0" && "fklsdf")}>
+
+                        </div>
+                        <div className="col-12" >
+                            <div className={"privacy-type-option form-option d-flex flex-column justify-content-left align-items-left " + (privacyType === "Entire place" && "selected-privacy-type")}  onClick={() => {setPrivacyType("Entire place")}}>
                                 <div className="d-flex"><b>An entire place</b></div>
                                 <div className="d-flex">Guests have the whole place to themselves.</div>
                             </div>
                         </div> 
-                        <div className="col-12">
-                            <div className=" privacy-type-option form-option d-flex flex-column justify-content-left align-items-left">
+                        <div className="col-12" >
+                            <div className={" privacy-type-option form-option d-flex flex-column justify-content-left align-items-left " + (privacyType === "Room" && "selected-privacy-type")} onClick={() => {setPrivacyType("Room")}}>
                                 <div className="d-flex"><b>A room</b></div>
                                 <div className="d-flex">Guests have their own room in a home, plus access to shares spaces.</div>
                             </div>
                         </div> 
-                        <div className="col-12">
-                            <div className=" privacy-type-option form-option d-flex flex-column justify-content-left align-items-left">
+                        <div className="col-12" >
+                            <div className={" privacy-type-option form-option d-flex flex-column justify-content-left align-items-left " + (privacyType === "Shared room" && "selected-privacy-type")} onClick={() => {setPrivacyType("Shared room")}}>
                                 <div className="d-flex"><b>A shared room</b></div>
                                 <div className="d-flex">Guests sleep in a room or common area that may be shared with you or others.</div>
                             </div>

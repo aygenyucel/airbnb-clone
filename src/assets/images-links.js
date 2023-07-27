@@ -1,104 +1,152 @@
+
+
 export const links = [
     {
-      label: "Rooms",
+      label: "House",
       imgSrc:
-        "https://a0.muscache.com/pictures/eb7ba4c0-ea38-4cbb-9db6-bdcc8baad585.jpg",
+        "/assets/real-estate-icons/House.png",
     },
     {
-      label: "Tropical",
+      label: "Apartment",
       imgSrc:
-        "https://a0.muscache.com/pictures/ee9e2a40-ffac-4db9-9080-b351efc3cfc4.jpg",
+        "/assets/real-estate-icons/Apartment.png",
     },
     {
-      label: "Amazing views",
+      label: "Barn",
       imgSrc:
-        "https://a0.muscache.com/pictures/3b1eb541-46d9-4bef-abc4-c37d77e3c21b.jpg",
+        "/assets/real-estate-icons/Barn.png",
+    },
+    {
+      label: "Bed & breakfast",
+      imgSrc:
+        "/assets/real-estate-icons/Bed & breakfast.png",
     },
     
     {
-      label: "Farms",
+      label: "Cabin",
       imgSrc:
-        "https://a0.muscache.com/pictures/aaa02c2d-9f0d-4c41-878a-68c12ec6c6bd.jpg",
+        "/assets/real-estate-icons/Cabin.png",
     },
     {
-      label: "Surfing",
+      label: "Campervan",
       imgSrc:
-        "https://a0.muscache.com/pictures/957f8022-dfd7-426c-99fd-77ed792f6d7a.jpg",
+        "/assets/real-estate-icons/Campervan.png",
     },
     {
-      label: "Lakefront",
+      label: "Casa particular",
       imgSrc:
-        "https://a0.muscache.com/pictures/677a041d-7264-4c45-bb72-52bff21eb6e8.jpg",
+        "/assets/real-estate-icons/Casa particular.png",
+    },
+    {
+      label: "Castle",
+      imgSrc:
+        "/assets/real-estate-icons/Castle.png",
+    },
+    {
+      label: "Cave",
+      imgSrc:
+        "/assets/real-estate-icons/Cave.png",
+    },
+    {
+      label: "Container",
+      imgSrc:
+        "/assets/real-estate-icons/Container.png",
+    },
+    {
+      label: "Cycladic home",
+      imgSrc:
+        "/assets/real-estate-icons/Cycladic home.png",
+    },
+    {
+      label: "Dammuso",
+      imgSrc:
+        "/assets/real-estate-icons/Dammuso.png",
+    },
+    {
+      label: "Dome",
+      imgSrc:
+        "/assets/real-estate-icons/Dome.png",
+    },
+    {
+      label: "Farm",
+      imgSrc:
+        "/assets/real-estate-icons/Farm.png",
+    },
+    {
+      label: "Guest house",
+      imgSrc:
+        "/assets/real-estate-icons/Guest house.png",
+    },
+    {
+      label: "Hotel",
+      imgSrc:
+        "/assets/real-estate-icons/Hotel.png",
+    },
+    {
+      label: "Houseboat",
+      imgSrc:
+        "/assets/real-estate-icons/Houseboat.png",
+    },
+    {
+      label: "Kezhan",
+      imgSrc:
+        "/assets/real-estate-icons/Kezhan.png",
+    },
+    {
+      label: "Minsu",
+      imgSrc:
+        "/assets/real-estate-icons/Minsu.png",
+    },
+    {
+      label: "Raid",
+      imgSrc:
+        "/assets/real-estate-icons/Raid.png",
+    },
+    {
+      label: "Ryokan",
+      imgSrc:
+        "/assets/real-estate-icons/Ryokan.png",
+    },
+    {
+      label: "Shepher's hut",
+      imgSrc:
+        "/assets/real-estate-icons/Shepher's hut.png",
+    },
+    {
+      label: "Tent",
+      imgSrc:
+        "/assets/real-estate-icons/Tent.png",
+    },
+    {
+      label: "Tiny home",
+      imgSrc:
+        "/assets/real-estate-icons/Tiny home.png",
+    },
+    {
+      label: "Tower",
+      imgSrc:
+        "/assets/real-estate-icons/Tower.png",
+    },
+    {
+      label: "Tree house",
+      imgSrc:
+        "/assets/real-estate-icons/Tree house.png",
+    },
+    {
+      label: "Trullo",
+      imgSrc:
+        "/assets/real-estate-icons/Trullo.png",
+    },
+    {
+      label: "Windmill",
+      imgSrc:
+        "/assets/real-estate-icons/Windmill.png",
+    },
+    {
+      label: "Yurt",
+      imgSrc:
+        "/assets/real-estate-icons/Yurt.png",
     },
     
-    {
-      label: "New",
-      imgSrc:
-        "https://a0.muscache.com/pictures/c0fa9598-4e37-40f3-b734-4bd0e2377add.jpg",
-    },
-    {
-      label: "Top of the world",
-      imgSrc:
-        "https://a0.muscache.com/pictures/248f85bf-e35e-4dc3-a9a1-e1dbff9a3db4.jpg",
-    },
-    {
-      label: "Amazing pools",
-      imgSrc:
-        "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg",
-    },
-    {
-      label: "Trending",
-      imgSrc:
-        "https://a0.muscache.com/pictures/3726d94b-534a-42b8-bca0-a0304d912260.jpg",
-    },
-    {
-      label: "Beachfront",
-      imgSrc:
-        "https://a0.muscache.com/pictures/bcd1adc0-5cee-4d7a-85ec-f6730b0f8d0c.jpg",
-    },
-    {
-      label: "OMG!",
-      imgSrc:
-        "https://a0.muscache.com/pictures/c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg",
-    },
-    {
-      label: "Historical homes",
-      imgSrc:
-        "https://a0.muscache.com/pictures/33dd714a-7b4a-4654-aaf0-f58ea887a688.jpg",
-    },
-    {
-      label: "Lakefront",
-      imgSrc:
-        "https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg",
-    },
-    {
-      label: "Lakefront",
-      imgSrc:
-        "https://a0.muscache.com/pictures/3726d94b-534a-42b8-bca0-a0304d912260.jpg",
-    },
-    {
-      label: "Lakefront",
-      imgSrc:
-        "https://a0.muscache.com/pictures/bcd1adc0-5cee-4d7a-85ec-f6730b0f8d0c.jpg",
-    },
-    {
-      label: "Lakefront",
-      imgSrc:
-        "https://a0.muscache.com/pictures/c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg",
-    },
-    {
-      label: "Lakefront",
-      imgSrc:
-        "https://a0.muscache.com/pictures/33dd714a-7b4a-4654-aaf0-f58ea887a688.jpg",
-    },
-    {
-      label: "Lakefront",
-      imgSrc:
-        "https://a0.muscache.com/pictures/33dd714a-7b4a-4654-aaf0-f58ea887a688.jpg",
-    },
-    {
-      label: "Lakefront",
-      imgSrc:
-        "https://a0.muscache.com/pictures/ee9e2a40-ffac-4db9-9080-b351efc3cfc4.jpg",
-    },
+    
   ];

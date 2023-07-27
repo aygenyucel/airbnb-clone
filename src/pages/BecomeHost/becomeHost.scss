@@ -7,11 +7,20 @@
     padding-inline: 35px;
 }
 
-.place-structure-option {
+.place-structure-option, .privacy-type-option {
     text-align: left;
     padding: 20px;
     border: 1px solid var(--color-gray-lighter);
     border-radius: 10px;
+    &:hover, &:active, &:focus{
+        padding: 18px;
+        border:2px solid black;
+
+    }
+}
+.selected-structure, .selected-privacy-type {
+    padding: 18px;
+    border:2px solid black;
 }
 
 .place-question {
