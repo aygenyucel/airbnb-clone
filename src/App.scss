@@ -93,3 +93,34 @@
       width: 96%;
   }
 }
+
+.form-header{
+  font-size: 0.8rem;
+  color: #808080;
+}
+
+.form-input {
+  border: none !important;
+  padding: 0px !important; 
+
+  :focus {
+      outline: none !important;
+      outline-style: none !important;
+  }
+  
+}
+
+.form-frame {
+  border: 1.5px solid var(--color-gray-light);
+  border-radius: 10px;
+}
+
+.form-divider {
+  width: 100%;
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.form-divider-light {
+  width: 100%;
+  border-bottom: 1px solid var(--color-gray-lighter);
+}

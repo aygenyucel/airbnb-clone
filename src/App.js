@@ -15,6 +15,10 @@ function App() {
           <Route path='/become-a-host' element= {<BecomeHost/>}>
             <Route path='structure' element= {<BecomeHost/>}/>
             <Route path='privacy-type'element= {<BecomeHost />}/>
+            <Route path='location' element={<BecomeHost/>} />
+            <Route path='floor-plan' element={<BecomeHost/>} />
+            <Route path='photos' element={<BecomeHost/>} />
+            <Route path='prices' element={<BecomeHost/>} />
           </Route>
         </Routes>
 
