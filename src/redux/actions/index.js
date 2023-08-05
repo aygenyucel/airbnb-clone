@@ -145,7 +145,9 @@ export const isAuthorizedAction = (userData, dispatch) => {
                          if(response.status === 401) {
                             //JWT token is invalid, try to get new access token using refresh token
                             const refreshToken = localStorage.getItem("refreshToken");
+                            console.log("!!!!!!!!!!!!!!!", refreshToken)
                             if(refreshToken) {
+                                console.log("refresssh")
                                 //refreshtoken is available
                                 const response2 = await fetch(
                                     `${BE_DEV_URL}/users/signupLogin/refresh`,
@@ -162,6 +164,7 @@ export const isAuthorizedAction = (userData, dispatch) => {
                                 );
 
                                 if(response2.ok) {
+                                    
                                     //new access token is fetched
                                     const data = await response2.json();
                                     console.log(data);

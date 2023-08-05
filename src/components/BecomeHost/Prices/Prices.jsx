@@ -1,9 +1,16 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap"
 
-const Prices = () => {
+const Prices = (props) => {
+    const [price, setPrice] = useState("")
 
-    const submitFormAndNext = () => {
-        //TODO: create the place & save db. Redirect to place page.
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if(price !== "") {
+            props.price(price)
+        }
     }
     return (
         <div className="container">
@@ -11,14 +18,14 @@ const Prices = () => {
                 <div className="place-question col-12 d-flex justify-content-left align-items-left mb-3"> 
                     What is the daily price for airbnb?
                 </div>
-                <Form className="form-frame">
-                    <Form.Group>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="form-frame px-2" >
                         <div className="input-price-header form-header d-flex justify-content-start">Price</div>
-                        <Form.Control className="input-additional form-input shadow-none" type="string" placeholder="Daily price"/>
+                        <Form.Control className="input-additional form-input shadow-none" type="number" placeholder="Daily price" onChange={(e) => setPrice(e.target.value)}/>
                     </Form.Group>
+                    <Button type="submit">Next</Button>
                 </Form>
             </div>
-            <Button onClick={() => {submitFormAndNext()}}>Next</Button>
         </div>
     )
 }

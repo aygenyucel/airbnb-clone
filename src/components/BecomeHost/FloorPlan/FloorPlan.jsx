@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 
-const FloorPlan = () => {
+const FloorPlan = (props) => {
     const navigate = useNavigate();
 
     const [numOfGuests, setNumOfGuests] = useState(1);
@@ -11,6 +11,13 @@ const FloorPlan = () => {
     const [numOfBathrooms, setNumOfBathrooms] = useState(1);
 
     const submitFloorPlanAndNext = () => {
+        const newFloorPlanObj = {
+            numOfGuests,
+            numOfBedrooms,
+            numOfBeds,
+            numOfBathrooms
+        }
+        props.floorPlanObj(newFloorPlanObj);
         navigate("/become-a-host/photos")
     }
     
