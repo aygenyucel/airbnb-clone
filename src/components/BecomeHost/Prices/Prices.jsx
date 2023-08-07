@@ -10,6 +10,7 @@ const Prices = (props) => {
 
         if(price !== "") {
             props.price(price)
+            props.isFormSubmit(true)
         }
     }
     return (
@@ -21,7 +22,7 @@ const Prices = (props) => {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="form-frame px-2" >
                         <div className="input-price-header form-header d-flex justify-content-start">Price</div>
-                        <Form.Control className="input-additional form-input shadow-none" type="number" placeholder="Daily price" onChange={(e) => setPrice(e.target.value)}/>
+                        <Form.Control className="input-additional form-input shadow-none" type="number" placeholder="Daily price" onChange={(e) => setPrice(e.target.value)} required/>
                     </Form.Group>
                     <Button type="submit">Next</Button>
                 </Form>

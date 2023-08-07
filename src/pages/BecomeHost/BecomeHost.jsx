@@ -28,11 +28,14 @@ const BecomeHost = () => {
     const [locationObj, setLocationObj] = useState(null);
     const [floorPlanObj, setFloorPlanObj] = useState(null);
     const [price, setPrice] = useState(null);
+    const [photos, setPhotos] = useState(null)
+
+    const [isFormSubmit, setIsFormSubmit] = useState(false)
 
 
     useEffect(() => {
-        console.log("xxxhdskjsladhj", price)
-    }, [price])
+        console.log("xxxhdskjsladhj!!!", photos)
+    }, [photos])
 
     const startForm = () => {
         navigate("structure")
@@ -51,12 +54,17 @@ const BecomeHost = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+
     useEffect(() => {
         if(isAuthorized === false) {
             navigate("/signup_login")
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAuthorized])
+
+    useEffect(() => {
+        console.log("is form finisheddd????", isFormSubmit)
+    }, [isFormSubmit])
 
 
     //needed to filled up previous questions before see the next endpoints
@@ -88,6 +96,48 @@ const BecomeHost = () => {
         }
 
     }, [path])
+
+    useEffect(() => {
+        if(isFormSubmit === true) {
+            console.log("userr id", userData.userID)
+            const newPlace = {
+                structure,
+                privacyType,
+                location: locationObj,
+                FloorPlan: floorPlanObj,
+                dailyPrice: price,
+                userID: `${userData._id}`
+                //images: photos
+            }
+            //if the form is finished, create new place for the user and save place informations
+            return new Promise(async (resolve, reject) => {
+                const options = {
+                    method: "POST",
+                    body: JSON.stringify(newPlace),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+                try {
+                    console.log("dddddddddddddddddddddddddd")
+
+                    const response = await fetch(`${process.env.REACT_APP_BE_DEV_URL}/places`, options)
+                    if(response.ok) {
+                        const {_id} = await response.json();
+                        console.log("new place created. ID: ", _id)
+                        resolve(_id)
+                    } else {
+                        console.log("Error when fetching!", response.status)
+                    }
+                    
+                } catch (error) {
+                    console.log("🚀 error", error)
+                    reject(error)
+                }
+            })
+            
+        }
+    }, [isFormSubmit])
     
    
     return <>{ isAuthorized &&  <div>
@@ -131,11 +181,11 @@ const BecomeHost = () => {
                     }
                     { 
                     (path === "/photos") &&
-                    <Photos />
+                    <Photos photos = {(photos => setPhotos(photos))}/>
                     }
                     { 
                     (path === "/prices") &&
-                    <Prices price = {(price) => setPrice(price)}/>
+                    <Prices price = {(price) => setPrice(price)} isFormSubmit = {(boolean) => setIsFormSubmit(boolean)}/>
                     }
                     
                     </div>

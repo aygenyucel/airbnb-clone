@@ -44,9 +44,9 @@ const Location = (props) => {
                             <Form onSubmit={handleSubmit}>
                                 <div className="location-form">
                                     <Form.Group className="px-3 mb-3 form-group d-flex flex-column justify-content-center form-frame">
-                                        <div className="input-country-header form-header d-flex justify-content-start">Country</div>
+                                        <div className="input-country-header form-header d-flex justify-content-start">Country*</div>
                     
-                                        <Form.Control className="input-country form-input shadow-none" type="string" placeholder="Country" onChange={(e) => setCountry(e.target.value)}/>
+                                        <Form.Control className="input-country form-input shadow-none" type="string" placeholder="Country" onChange={(e) => setCountry(e.target.value)} required/>
                                     </Form.Group>
                                     <div className="form-frame">
                                         <Form.Group className="px-3 form-group d-flex flex-column justify-content-center">
@@ -80,9 +80,9 @@ const Location = (props) => {
                                         </Form.Group>
                                         <div className="form-divider"/>
                                         <Form.Group className="px-3 form-group d-flex flex-column justify-content-center">
-                                            <div className="input-district-header form-header d-flex justify-content-start">City</div>
+                                            <div className="input-district-header form-header d-flex justify-content-start">City*</div>
                                             
-                                            <Form.Control className="input-disctrict form-input shadow-none" type="string" placeholder="City" onChange={(e) => setCity(e.target.value)}/>
+                                            <Form.Control className="input-disctrict form-input shadow-none" type="string" placeholder="City" onChange={(e) => setCity(e.target.value)} required/>
                                         </Form.Group>
                                     </div>
                                 </div>
