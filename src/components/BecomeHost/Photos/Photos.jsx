@@ -5,25 +5,31 @@ import { useNavigate } from "react-router-dom"
 const Photos = (props) => {
     const navigate = useNavigate();
 
-    const [placeImages, setPlaceImages] = useState([]);
+    const [placeImages, setPlaceImages] = useState(null);
 
+    const [url, setUrl] = useState("");
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
+    
+    const uploadImage = (event) => {
+        setPlaceImages(event.target.files)
         
-        const formData = new FormData(event.currentTarget);
-        setPlaceImages(formData.getAll("placeImages"))
-
-        for (let i = 0; i < formData.getAll("placeImages").length; i++) {
-            // formData.append(placeImages[i].name, placeImages[i]);
-            formData.append("upload_preset", "airbnb-place-images")
-            formData.append("cloud_name",process.env.CLOUD_NAME)
+        try {
+            setPlaceImages(Array.from(event.target.files))
+            
+        } catch (error) {
+            console.log(error)
         }
-        console.log(formData.getAll("placeImages"));
-
-        props.photos(formData.getAll("placeImages"));
-        navigate("/become-a-host/prices")
     }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        props.photos(placeImages);
+
+        navigate("/become-a-host/prices")
+        
+    }
+
     return (
         <div className="container">
             <Form onSubmit={handleSubmit}>
@@ -47,7 +53,7 @@ const Photos = (props) => {
                                     <div>
                                         <u>Choose from your device</u>
                                     </div>
-                                <Form.Control type="file" name="placeImages" multiple="multiple" accept="image/jpeg">
+                                <Form.Control type="file" name="placeImages[]" multiple= "multiple" accept="image/jpeg, image/png" onChange={uploadImage}>
                                 </Form.Control>
                             </Form.Group>
                            

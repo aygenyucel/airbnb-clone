@@ -32,7 +32,6 @@ const BecomeHost = () => {
 
     const [isFormSubmit, setIsFormSubmit] = useState(false)
 
-
     useEffect(() => {
         console.log("xxxhdskjsladhj!!!", photos)
     }, [photos])
@@ -54,7 +53,6 @@ const BecomeHost = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
     useEffect(() => {
         if(isAuthorized === false) {
             navigate("/signup_login")
@@ -68,7 +66,6 @@ const BecomeHost = () => {
 
 
     //needed to filled up previous questions before see the next endpoints
-
     useEffect(() => {
         if(path === "/privacy-type") {
             if(structure === null) {
@@ -86,12 +83,14 @@ const BecomeHost = () => {
             }
 
         }
-        // if(path === "/photos") {
-
-        // }
-        if(path === "/prices") {
+        if(path === "/photos") {
             if(floorPlanObj === null) {
                 navigate("/become-a-host/floor-plan")
+            }
+        }
+        if(path === "/prices") {
+            if(photos === null) {
+                navigate("/become-a-host/photos")
             }
         }
 
@@ -99,44 +98,77 @@ const BecomeHost = () => {
 
     useEffect(() => {
         if(isFormSubmit === true) {
-            console.log("userr id", userData.userID)
-            const newPlace = {
-                structure,
-                privacyType,
-                location: locationObj,
-                FloorPlan: floorPlanObj,
-                dailyPrice: price,
-                userID: `${userData._id}`
-                //images: photos
-            }
-            //if the form is finished, create new place for the user and save place informations
-            return new Promise(async (resolve, reject) => {
-                const options = {
-                    method: "POST",
-                    body: JSON.stringify(newPlace),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-                try {
-                    console.log("dddddddddddddddddddddddddd")
 
-                    const response = await fetch(`${process.env.REACT_APP_BE_DEV_URL}/places`, options)
-                    if(response.ok) {
-                        const {_id} = await response.json();
-                        console.log("new place created. ID: ", _id)
-                        resolve(_id)
-                    } else {
-                        console.log("Error when fetching!", response.status)
+            new Promise(async (resolve, reject) => {
+                try {
+                    //first we upload the images and getting cloudinary urls
+
+                    const formData = new FormData();
+                    // formData.append("placeImages", event.target.files[0]);
+                    photos.forEach((photo) =>  
+                        {formData.append("placeImages", photo)}
+                    )
+                    
+                    console.log(formData)
+                    const options = {
+                        method: "POST",
+                        body: formData
                     }
                     
+                    const response = await fetch(`${process.env.REACT_APP_BE_DEV_URL}/places/uploadImages`, options)
+                    if(response.ok) {
+                        //if we upload images successfully, we are creating newPlace object
+                        //and save new place to db
+                        const data = await response.json();
+                        const imageUrls = data.data
+
+                        try {
+                            const newPlace = {
+                                structure,
+                                privacyType,
+                                location: locationObj,
+                                FloorPlan: floorPlanObj,
+                                dailyPrice: price,
+                                userID: `${userData._id}`,
+                                images: imageUrls
+                            }
+
+                            const options = {
+                                method: "POST",
+                                body: JSON.stringify(newPlace),
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
+                            }
+                            try {
+                                const response = await fetch(`${process.env.REACT_APP_BE_DEV_URL}/places`, options)
+                                if(response.ok) {
+                                    const {_id} = await response.json();
+                                    console.log("new place created. ID: ", _id)
+                                    navigate("/")
+                                    resolve(_id)
+                                } else {
+                                    console.log("Error when fetching!", response.status)
+                                }
+                                
+                            } catch (error) {
+                                console.log("🚀 error", error)
+                                reject(error)
+                            }
+                            
+                        } catch (error) {
+                            
+                        }
+
+                    } else {
+                        console.log("oppss, error when fetching!")
+                    }
                 } catch (error) {
-                    console.log("🚀 error", error)
-                    reject(error)
+                    
                 }
             })
-            
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isFormSubmit])
     
    
