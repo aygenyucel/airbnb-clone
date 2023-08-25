@@ -3,7 +3,6 @@ export const GET_USER_ID = 'GET_USER_ID'
 
 const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL;
 
-
 export const checkEmailExistAction = (email) => {
     
         return new Promise(async(resolve,reject) => {
@@ -54,7 +53,7 @@ export const signupLoginEmailAction = (user) => {
             if(response.ok) {
                 const data = await response.json();
                 const {JWTToken, refreshToken} = data;
-                console.log("GET TOKEN res:", data);
+                // console.log("GET TOKEN res:", data);
                 if(JWTToken) {
                     const options = {
                         method: "GET",
@@ -128,7 +127,7 @@ export const isAuthorizedAction = (userData, dispatch) => {
                         //user is fetched and available in redux state
 
                         const userData = await response.json();
-                        console.log("actionnn", userData)
+                        // console.log("actionnn", userData)
                         dispatch({
                             type: GET_USER,
                             payload: userData
@@ -167,7 +166,7 @@ export const isAuthorizedAction = (userData, dispatch) => {
                                     
                                     //new access token is fetched
                                     const data = await response2.json();
-                                    console.log(data);
+                                    // console.log(data);
                                     //update access token in local storage
                                     localStorage.setItem(
                                         "JWTToken",

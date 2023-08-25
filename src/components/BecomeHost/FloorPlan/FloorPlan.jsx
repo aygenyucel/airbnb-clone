@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 
@@ -11,6 +11,7 @@ const FloorPlan = (props) => {
     const [numOfBathrooms, setNumOfBathrooms] = useState(1);
 
     const submitFloorPlanAndNext = () => {
+        
         const newFloorPlanObj = {
             numOfGuests,
             numOfBedrooms,

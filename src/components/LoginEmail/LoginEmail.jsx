@@ -23,7 +23,7 @@ const LoginEmail = () => {
     const checkEmailAndSubmit = (event) => {
         // setIsContinueClicked(true)
         event.preventDefault();
-        console.log("xxxxxxxxx", email)
+        // console.log("xxxxxxxxx", email)
         
         checkEmailExistAction(email)
         .then(email => {
@@ -145,9 +145,9 @@ const LoginEmail = () => {
                                                         <div className="input-explanation">To sign up, you need to be at least 18. Your Birthday won't be shared with other people who use Airbnb.</div>
                                                         <div className="form-group-div">
                                                             <Form.Group className="px-3 form-group form-group-email d-flex flex-column justify-content-center">
-                                                                <div className="input-email-header form-header d-flex justify-content-start">Email</div>
+                                                                <div className="input-email-header form-header d-flex justify-content-start">Username</div>
                                                                 
-                                                                <Form.Control className="input-email form-input shadow-none" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                                                <Form.Control className="input-email form-input shadow-none" type="text" placeholder="Username" value={email} onChange={(e) => setEmail(e.target.value)} required />
                                                                 
                                                             </Form.Group>
                                                             
@@ -180,9 +180,10 @@ const LoginEmail = () => {
                                     <Form onSubmit={checkEmailAndSubmit}>
                                         <div className="login-email-form">
                                             <Form.Group className="px-3 form-group form-group-email d-flex flex-column justify-content-center">
-                                                <div className="input-email-header d-flex justify-content-start">Email</div>
+                                                {/* we are using username temporarily, because we can not validate emails currently*/}
+                                                <div className="input-email-header d-flex justify-content-start">Username</div>
                                                 
-                                                <Form.Control className="input-email shadow-none form-input" type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+                                                <Form.Control className="input-email shadow-none form-input" type="text" placeholder="Username" onChange={(e) => setEmail(e.target.value)}/>
                                             </Form.Group>
                                         </div>
                                         <button className="signup-login-button login-button-email" type="submit">

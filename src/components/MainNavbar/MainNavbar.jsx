@@ -3,6 +3,7 @@ import './mainNavbar.scss';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isAuthorizedAction } from '../../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 const MainNavbar = (props) => {
 
@@ -14,6 +15,8 @@ const MainNavbar = (props) => {
   const userData = useSelector(state => state.userReducer?.data);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     //check if user authorized
@@ -134,7 +137,7 @@ const MainNavbar = (props) => {
                       <div>Refer a Host</div>
                     </a>
                     <a href="">
-                      <div>Account</div>
+                      <div onClick={() => navigate("/account-settings")}>Account</div>
                     </a>
                     <div className='profile-dropdown-menu-divider'></div>
                     <a href="">

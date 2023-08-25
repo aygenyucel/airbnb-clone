@@ -1,6 +1,8 @@
 import './App.scss';
+import Account from './pages/Account/Account';
 import BecomeHost from './pages/BecomeHost/BecomeHost';
 import Home from './pages/Home/Home';
+import Places from './pages/Places/Places';
 import SignupLogin from './pages/SignupLogin/SignupLogin';
 import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -20,6 +22,9 @@ function App() {
             <Route path='photos' element={<BecomeHost/>} />
             <Route path='prices' element={<BecomeHost/>} />
           </Route>
+          <Route path='/places/:id' element={<Places/>}/>
+          <Route path='/account-settings' element={<Account/>}/>
+
         </Routes>
 
       </div>

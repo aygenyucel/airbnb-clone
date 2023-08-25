@@ -32,14 +32,14 @@ const BecomeHost = () => {
 
     const [isFormSubmit, setIsFormSubmit] = useState(false)
 
-    useEffect(() => {
-        console.log("xxxhdskjsladhj!!!", photos)
-    }, [photos])
+    // useEffect(() => {
+    //     console.log("xxxhdskjsladhj!!!", photos)
+    // }, [photos])
 
     const startForm = () => {
         navigate("structure")
     }
-
+    
     useEffect(() => {
         isAuthorizedAction(userData, dispatch).then(boolean => {
             if(boolean === true) {
@@ -59,10 +59,6 @@ const BecomeHost = () => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAuthorized])
-
-    useEffect(() => {
-        console.log("is form finisheddd????", isFormSubmit)
-    }, [isFormSubmit])
 
 
     //needed to filled up previous questions before see the next endpoints
@@ -127,7 +123,7 @@ const BecomeHost = () => {
                                 structure,
                                 privacyType,
                                 location: locationObj,
-                                FloorPlan: floorPlanObj,
+                                floorPlan: floorPlanObj,
                                 dailyPrice: price,
                                 userID: `${userData._id}`,
                                 images: imageUrls

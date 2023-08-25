@@ -6,9 +6,6 @@ const Photos = (props) => {
     const navigate = useNavigate();
 
     const [placeImages, setPlaceImages] = useState(null);
-
-    const [url, setUrl] = useState("");
-
     
     const uploadImage = (event) => {
         setPlaceImages(event.target.files)
@@ -53,7 +50,7 @@ const Photos = (props) => {
                                     <div>
                                         <u>Choose from your device</u>
                                     </div>
-                                <Form.Control type="file" name="placeImages[]" multiple= "multiple" accept="image/jpeg, image/png" onChange={uploadImage}>
+                                <Form.Control type="file" name="placeImages[]" multiple= "multiple" accept="image/jpeg" onChange={uploadImage}>
                                 </Form.Control>
                             </Form.Group>
                            
