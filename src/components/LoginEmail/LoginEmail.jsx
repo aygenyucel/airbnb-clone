@@ -24,20 +24,27 @@ const LoginEmail = () => {
         // setIsContinueClicked(true)
         event.preventDefault();
         // console.log("xxxxxxxxx", email)
+
+        if(email === "") {
+            console.log("email required!!")
+        } else {
+
+            checkEmailExistAction(email)
+            .then(email => {
+                if(email !== null){
+                    setIsEmailExist(true)
+                    setIsContinueClicked(true)
+                }
+                else {
+                    setIsEmailExist(false)
+                    setIsContinueClicked(true)
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            });
+        }
         
-        checkEmailExistAction(email)
-        .then(email => {
-            if(email !== null){
-                setIsEmailExist(true)
-                setIsContinueClicked(true)
-            } else {
-                setIsEmailExist(false)
-                setIsContinueClicked(true)
-            }
-        })
-        .catch(error => {
-            console.log(error)
-        });
     }
 
     const signupSubmit = (event) => {
@@ -49,22 +56,22 @@ const LoginEmail = () => {
             birthDate: birthDate,
             password: password
         }
-        checkEmailExistAction(email).then(email => {
-            if(email === null) {
-                signupLoginEmailAction(newUser)
-                .then(({dispatchAction1, dispatchAction2}) => {
-                    dispatch(dispatchAction1, dispatchAction2)
-                    })
-                .then(() => navigate("/"))
-                .catch((error) => console.log(error))
-            }
-            else {
-                setIsEmailExist(true);
-                setIsRedirectFromSignup(true)
-                navigate("/signup_login", {state:{redirectEmailLogin: true}})
-            }
-        })
-       
+            checkEmailExistAction(email).then(email => {
+                if(email === null) {
+                    signupLoginEmailAction(newUser)
+                    .then(({dispatchAction1, dispatchAction2}) => {
+                        dispatch(dispatchAction1, dispatchAction2)
+                        })
+                    .then(() => navigate("/"))
+                    .catch((error) => console.log(error))
+                }
+                
+                else {
+                    setIsEmailExist(true);
+                    setIsRedirectFromSignup(true)
+                    navigate("/signup_login", {state:{redirectEmailLogin: true}})
+                }
+            })
     }
 
     const loginSubmit = (e) => {
@@ -135,14 +142,14 @@ const LoginEmail = () => {
                                                                 <Form.Control className="input-lastname form-input shadow-none" type="text" placeholder="Last name" onChange={(e) => {setLastName(e.target.value)}} required />
                                                             </Form.Group>
                                                         </div>
-                                                        <div className="input-explanation">Make sure it matches the name on your government ID.</div>
+                                                        <div className="input-explanation">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</div>
                                                         <div className="form-group-div">
                                                             <Form.Group className="px-3 form-group form-group-birthdate d-flex flex-column justify-content-center">                                                    
                                                                 <div className="input-birthdate-header form-header d-flex justify-content-start">Birthdate</div>
                                                                 <Form.Control className="input-lastname form-input shadow-none" type="date" placeholder="Birthdate" onChange={(e) => {setBirthDate(e.target.value)}} required/>
                                                             </Form.Group>
                                                         </div>
-                                                        <div className="input-explanation">To sign up, you need to be at least 18. Your Birthday won't be shared with other people who use Airbnb.</div>
+                                                        <div className="input-explanation">To sign up, you need to be at least 18. Your Birthday won't be shared with other people who use Airbnb Clone.</div>
                                                         <div className="form-group-div">
                                                             <Form.Group className="px-3 form-group form-group-email d-flex flex-column justify-content-center">
                                                                 <div className="input-email-header form-header d-flex justify-content-start">Username</div>
@@ -152,7 +159,7 @@ const LoginEmail = () => {
                                                             </Form.Group>
                                                             
                                                         </div>
-                                                        <div className="input-explanation">We'll email you trip confirmations and receipts.</div>
+                                                        <div className="input-explanation">Consectetur adipiscing elit, sed do eiusmod tempor.</div>
                                                         <div className="form-group-div">
                                                             <Form.Group className="px-3 form-group form-group-password d-flex flex-column justify-content-center">
                                                                 <div className="input-password-header form-header d-flex justify-content-start">Password</div>
@@ -161,7 +168,7 @@ const LoginEmail = () => {
                                                             </Form.Group>
                                                         </div>
                                                         <div className="privacy-policy-signup">
-                                                            By selecting <strong>Agree and continue</strong> , I agree to Airbnb's <a href="#">Terms of Service</a>, <a href="#">Payments Terms of Service</a>, and <a href="#">Nondiscrimination Policy</a> and acknowledge the <a href="#">Privacy Policy</a>.
+                                                            By selecting <strong>Agree and continue</strong> , I agree to Airbnb Clone's <a href="#">Lorem ipsum of Service</a>, and <a href="#">Lorem ipsum policy</a> dolar sit amet <a href="#">Privacy Policy</a>.
                                                         </div>
                                                     </div>
                                                 </div>
@@ -176,7 +183,7 @@ const LoginEmail = () => {
                         : 
                         <>
                             <div className="signup-login-main">
-                                <div className="welcome-to-airbnb d-flex justify-content-start">Welcome to Airbnb</div>
+                                <div className="welcome-to-airbnb d-flex justify-content-start">Welcome to Airbnb Clone</div>
                                     <Form onSubmit={checkEmailAndSubmit}>
                                         <div className="login-email-form">
                                             <Form.Group className="px-3 form-group form-group-email d-flex flex-column justify-content-center">

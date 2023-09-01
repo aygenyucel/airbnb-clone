@@ -94,6 +94,25 @@
   }
 }
 
+.main-button {
+  font-weight: 700;
+  border: none;
+  color: white;
+  width: 100%;
+  height: 48px;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  background: rgb(238,37,81);
+  background: linear-gradient(90deg, rgba(238,37,81,1) 35%, rgba(207,13,98,1) 100%);
+
+  &:active {
+      margin-inline: 7px;
+      font-size: 0.9rem;
+      width: 96%;
+  }
+}
+
 .form-header{
   font-size: 0.8rem;
   color: #808080;
@@ -104,14 +123,20 @@
   padding: 0px !important; 
 
   :focus {
+    border:0px;
+
       outline: none !important;
       outline-style: none !important;
   }
-  
 }
 
 .form-frame {
   border: 1.5px solid var(--color-gray-light);
+  border-radius: 10px;
+}
+
+.form-frame-light {
+  border: 1.5px solid var(--color-gray-lighter);
   border-radius: 10px;
 }
 
@@ -123,4 +148,12 @@
 .form-divider-light {
   width: 100%;
   border-bottom: 1px solid var(--color-gray-lighter);
+}
+
+.form-shadow{
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 15px 0px;
+}
+
+.not-allowed {
+  cursor: not-allowed;
 }

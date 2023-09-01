@@ -1,4 +1,4 @@
-import { Button, Form } from "react-bootstrap";
+import { Button, CloseButton, Form } from "react-bootstrap";
 import MainNavbar from "../../components/MainNavbar/MainNavbar"
 import './signupLogin.scss'
 import LoginPhone from "../../components/LoginPhone/LoginPhone.jsx";
@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthorizedAction } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
+import CustomTooltip from "../../components/CustomTooltip/CustomTooltip";
 
 const SignupLogin = (props) => {
 
@@ -21,6 +22,8 @@ const SignupLogin = (props) => {
     const [isLoginPhone, setIsLoginPhone] = useState(true);
     const [isLoginApple, setIsLoginApple] = useState(false);
     const [isLoginGoogle, setIsLoginGoogle] = useState(true);
+
+    const [isTooltipLoginEmailOpen, setIsTooltipLoginEmailOpen] = useState(true)
 
 
     useEffect(() => {
@@ -71,7 +74,7 @@ const SignupLogin = (props) => {
 
     return <> {!isAuthorized && 
             <> 
-                <MainNavbar isNavbarMiddleVisible = {false}/>
+                <MainNavbar isNavbarMiddleVisible = {false} isTooltipAirbnbOpen = {false}/>
                 <div className="fsdf">
                     
                     <div className="signup-login d-flex justify-content-center ">
@@ -110,22 +113,50 @@ const SignupLogin = (props) => {
                                             Continue with Apple
                                         </div>
                                     </div>
-                                        {isLoginPhone && <div className="d-flex" onClick={() => {changeLoginType("email")}}>
-                                            <span>
-                                                <img className="other-options-logo" src="/assets/email-icon.png" alt="email icon" />
-                                            </span>
-                                            <div className="login-option-email d-flex justify-content-center align-items-center" >
-                                                Continue with email
+                                        {isLoginPhone && 
+                                            <CustomTooltip
+                                            open = {isTooltipLoginEmailOpen}
+                                            title = {
+                                                <div className='d-flex jsutify-content-center align-items-center'>
+                                                <div textAlign={'center'} >You can login & signup with custom <u>username</u> from here! </div>
+                                                
+                                                <div className='d-flex justify-content-end'>
+                                                    <CloseButton onClick={() => {setIsTooltipLoginEmailOpen(false)}} />
+                                                </div>
+                                                
+                                                </div>
+                                            }
+                                            placement="top"
+                                            arrow
+                                            
+                                        >
+                                                <div className="d-flex" onClick={() => {changeLoginType("email")}}>
+                                                    <span>
+                                                        <img className="other-options-logo" src="/assets/email-icon.png" alt="email icon" />
+                                                    </span>
+                                                    
+                                                        <div className="login-option-email d-flex justify-content-center align-items-center" >
+                                                            
+                                                            Continue with email
+                                                            
+                                                        </div>
+                                                    
+                                                </div>
+                                            </CustomTooltip>
+                                            }
+                                        {isLoginEmail && 
+                                        
+                                            <div className="d-flex" onClick={() => {changeLoginType("phone")}}>
+                                                <span>
+                                                    <img className="other-options-logo" src="/assets/phone-icon.png" alt="phone icon" />
+                                                </span>
+                                                <div className="login-option-phone d-flex justify-content-center align-items-center" >
+                                                    
+                                                    Continue with phone
+                                                </div>
                                             </div>
-                                        </div>}
-                                        {isLoginEmail && <div className="d-flex" onClick={() => {changeLoginType("phone")}}>
-                                            <span>
-                                                <img className="other-options-logo" src="/assets/phone-icon.png" alt="phone icon" />
-                                            </span>
-                                            <div className="login-option-phone d-flex justify-content-center align-items-center" >
-                                                Continue with phone
-                                            </div>
-                                        </div>}
+                                        
+                                        }
                                         
                                 </div>
                         </div>

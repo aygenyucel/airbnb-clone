@@ -1,0 +1,103 @@
+.places {
+    padding-inline: 80px;
+    // background-color: antiquewhite;
+    padding-block: 20px;
+    text-align: left;
+}
+
+.place-images{
+    width: 100%;
+
+    .image-left {
+        width: 50%;
+        img {
+            width: 100%;
+        }
+    }
+
+    .image-right {
+        width: 50%;
+        // background-color: aqua;
+
+        div {
+            height: 100%;
+            width: 100%;
+        }
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.place-heading{
+    font-size: 1.7rem;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    
+}
+.place-heading-information {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.place-main {
+    width: 100%;
+    margin-top: 50px;
+    .place-about {
+        width: 65%;
+        margin-right: 60px;
+    }
+
+    .place-reservation {
+        width: 35%;
+        padding: 20px;
+        height: 100%;
+        .daily-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        // .rating {
+        //     font-size: 0.8rem;
+        //     font-weight: 700;
+        // }
+
+    }
+}
+.reservation-rating-review {
+    font-size: 0.8rem;
+            font-weight: 700;
+}
+
+
+
+.reservation-form {
+    font-size: 0.6rem;
+    font-weight: 700;
+}
+
+.check-date {
+    
+    
+    .check-in {
+        width: 50%;
+        border-right: 1px solid var(--color-gray-light);
+        padding: 10px;
+    }
+    .check-out {
+        width: 50%;
+        padding: 10px;
+    }
+    
+}
+
+.checkin-date, .checkout-date, .guest-number{
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.check-guests {
+    padding: 10px;
+}

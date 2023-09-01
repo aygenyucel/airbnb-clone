@@ -1,22 +1,29 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import './mainNavbar.scss';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isAuthorizedAction } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
-
+import { CloseButton } from 'react-bootstrap';
+import CustomTooltip from '../CustomTooltip/CustomTooltip';
 const MainNavbar = (props) => {
 
   const [isProfileClicked, setIsProfileClicked] = useState(false)
   const [isNavbarMiddleVisible, setIsNavbarMiddleVisible] = useState(true)
   const [clickedOutside, setClickedOutside] = useState(false);
 
+  const [padding, setPadding] = useState(null)
   const myRef = useRef();
   const userData = useSelector(state => state.userReducer?.data);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const [isTooltipAirbnbOpen, setIsTooltipAirbnbOpen] = useState(false)
+  const [isTooltipWelcomeOpen, setIsTooltipWelcomeOpen] = useState(false)
+  const [isTooltipWelcome2Open, setIsTooltipWelcome2Open] = useState(false)
 
   useEffect(() => {
     //check if user authorized
@@ -44,10 +51,13 @@ const MainNavbar = (props) => {
 
   const handleClickInside = () => {
     setClickedOutside(false)
+
     if(isProfileClicked) {
       setIsProfileClicked(false)
+
     } else {
       setIsProfileClicked(true)
+      setIsTooltipAirbnbOpen(false)
     }
   };
 
@@ -58,6 +68,24 @@ const MainNavbar = (props) => {
     }
     }, [props.isNavbarMiddleVisible])
 
+    useEffect(() => {
+      if(props.isTooltipAirbnbOpen === false) {
+        setIsTooltipAirbnbOpen(false)
+      }
+      }, [props.isTooltipAirbnbOpen])
+
+  useEffect(() => {
+    if(props.padding !== undefined ) {
+      setPadding(props.padding)
+    }
+  }, [props.padding])
+
+  useEffect(() => {
+    if(props.isHomePage) {
+      setIsTooltipWelcomeOpen(true)
+    }
+  }, [props.isHomePage])
+
   const logOut = () => {
     const JWTToken = localStorage.getItem("JWTToken");
     if(JWTToken){
@@ -65,8 +93,38 @@ const MainNavbar = (props) => {
     }
   }
 
+
   return (
-      <div className="mainNavbar">
+      <div className="mainNavbar" style={padding && {paddingLeft: padding, paddingRight: padding}}>
+        <CustomTooltip
+            open= {isTooltipWelcomeOpen}
+            title= {
+                <div className="d-flex align-items-center">
+                    <div className='d-flex flex-column justify-content-center align-items-center'>
+                            <div textAlign={'center'} className="mb-2" >Welcome to clone of the airbnb website!</div>                        
+                        </div>
+                    <div className='d-flex justify-content-end'>
+                    <CloseButton onClick={() => {setIsTooltipWelcomeOpen(false); setIsTooltipWelcome2Open(true)}} />
+                </div>
+                </div>}
+                placement='top'/>
+                
+            
+            <CustomTooltip
+            open= {isTooltipWelcome2Open}
+            title= {
+                <div className="d-flex align-items-center">
+                    <div className='d-flex flex-column justify-content-center align-items-center'>
+                            <div>You can create fake account with custom username and create & share fake places. Have fun!</div>
+                        
+                        </div>
+                    <div className='d-flex justify-content-end'>
+                    <CloseButton onClick={() => {setIsTooltipWelcome2Open(false); setIsTooltipAirbnbOpen(true)}}  />
+                </div>
+                </div>}
+                placement='top'/>
+                
+            
         <div className='row d-flex align-items-center justify-content-between'>
           <div className='col-1 col-lg-4 d-flex align-items-center justify-content-start'>
             <a href="/" className="logo">
@@ -99,7 +157,24 @@ const MainNavbar = (props) => {
               <div className='link-airbnbYourHome d-flex align-items-center justify-content-center'>Airbnb your home</div> 
               } */}
               <a href='/become-a-host'>
-                <div className='link-airbnbYourHome d-flex align-items-center justify-content-center'>Airbnb your home</div> 
+              <CustomTooltip
+                open= {isTooltipAirbnbOpen}
+                title={
+                  <div className='d-flex jsutify-content-center align-items-center'>
+                     <div textAlign={'center'} >You can add a fake airbnb place from here!</div>
+                    
+                    <div className='d-flex justify-content-end'>
+                      <CloseButton onClick={() => {setIsTooltipAirbnbOpen(false)}} />
+                    </div>
+                    
+                  </div>
+                }
+                arrow
+              >
+                {/* <Tooltip open= {true} title="you can create new place for airbnb here"> */}
+                  <div className='link-airbnbYourHome d-flex align-items-center justify-content-center'>Airbnb your home</div> 
+                {/* </Tooltip> */}
+                </CustomTooltip>
               </a>
 
               <div className='link-language d-flex align-items-center justify-content-center'> <img className='world-icon' src="/assets/world-icon.png" alt="world icon" /></div>
@@ -131,7 +206,7 @@ const MainNavbar = (props) => {
                     </a>
                     <div className='profile-dropdown-menu-divider'></div>
                     <a href="/become-a-host">
-                      <div>Airbnb your home</div>
+                        <div>Airbnb your home</div>
                     </a>
                     <a href="">
                       <div>Refer a Host</div>

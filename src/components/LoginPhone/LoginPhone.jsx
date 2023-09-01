@@ -11,7 +11,7 @@ const LoginPhone = () => {
                     </div>
                     <div className="horizontal-divider"/>
                     <div className="signup-login-main">
-                        <div className="welcome-to-airbnb d-flex justify-content-start">Welcome to Airbnb</div>
+                        <div className="welcome-to-airbnb d-flex justify-content-start">Welcome to Airbnb Clone</div>
                         <div className="login-phone-form">
                             <Form>
                                 <Form.Group className="px-3 form-group form-group-country d-flex flex-column justify-content-center">
