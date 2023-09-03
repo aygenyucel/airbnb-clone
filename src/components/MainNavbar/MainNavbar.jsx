@@ -31,13 +31,37 @@ const MainNavbar = (props) => {
     .then((boolean) => {
       if(boolean === true) {
         setIsAuthorized(true)
+
+        //if its home page, show only airbnb tooltip
+
+        if(props.isHomePage){
+          setIsTooltipWelcomeOpen(false)
+          setIsTooltipAirbnbOpen(true)
+        }
+        
       }
       else {
         setIsAuthorized(false)
+
+        //if its home page, show welcome tooltips
+        if(props.isHomePage){
+          setIsTooltipWelcomeOpen(true)
+        }
+        
       }
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // useEffect(() => {
+  //   if(props.isHomePage && isAuthorized) {
+  //       setIsTooltipWelcomeOpen(false)
+  //       setIsTooltipAirbnbOpen(true)
+  //   }
+  //   else if(props.isHomePage && !isAuthorized) {
+  //     setIsTooltipWelcomeOpen(true)
+  //   }
+  // }, [isAuthorized])
 
   const handleClickOutside = e => {
     if (!myRef?.current?.contains(e.target)) {
@@ -80,11 +104,7 @@ const MainNavbar = (props) => {
     }
   }, [props.padding])
 
-  useEffect(() => {
-    if(props.isHomePage) {
-      setIsTooltipWelcomeOpen(true)
-    }
-  }, [props.isHomePage])
+
 
   const logOut = () => {
     const JWTToken = localStorage.getItem("JWTToken");

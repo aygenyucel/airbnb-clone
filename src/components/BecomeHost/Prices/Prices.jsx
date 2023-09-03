@@ -1,11 +1,8 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap"
-import { useNavigate } from "react-router-dom";
 
 const Prices = (props) => {
     const [price, setPrice] = useState("");
-    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -13,9 +10,9 @@ const Prices = (props) => {
         if(price !== "") {
             props.price(price)
             props.isFormSubmit(true)
-            
         }
     }
+
     return (
         <div className="container">
             <div className="d-flex row g-3">

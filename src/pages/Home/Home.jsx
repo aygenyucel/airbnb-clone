@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { isAuthorizedAction } from "../../redux/actions";
 import CustomTooltip from "../../components/CustomTooltip/CustomTooltip";
 import { CloseButton } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const userData = useSelector(state => state.userReducer?.data);
@@ -15,6 +16,8 @@ const Home = () => {
     const dispatch = useDispatch();
     const [allPlaces, setAllPlaces] = useState(null)
     const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL;
+
+    const navigate = useNavigate();
 
    
 
@@ -76,7 +79,7 @@ const Home = () => {
             <div className="home-page-cards d-flex flex-row">
                     <div className="row justify-content-center">
                         {allPlaces?.map((place) => 
-                        <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-12" onClick={() => navigate(`/places/${place._id}`)}>
                              <Card place= {place}/>
                          </div>
                         )}

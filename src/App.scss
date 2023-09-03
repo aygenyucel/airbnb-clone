@@ -157,3 +157,22 @@
 .not-allowed {
   cursor: not-allowed;
 }
+
+.loading-div {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform:translateX(-50%);
+
+  background-color: black;
+  color: white;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  div {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform:translateX(-50%);
+  }
+}

@@ -22,7 +22,7 @@ function App() {
             <Route path='photos' element={<BecomeHost/>} />
             <Route path='prices' element={<BecomeHost/>} />
           </Route>
-          <Route path='/places/:id' element={<Places/>}/>
+          <Route path='/places/:placeID' element={<Places/>}/>
           <Route path='/account-settings' element={<Account/>}/>
 
         </Routes>

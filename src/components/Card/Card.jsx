@@ -2,6 +2,7 @@ import "./card.scss";
 import {cards} from "../../assets/cards-list.js";
 import { Carousel } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
 
@@ -15,6 +16,9 @@ const Card = (props) => {
     const [placeUserID, setPlaceUserID] = useState(null)
     const [placeUserInfo, setPlaceUserInfo] = useState(null)
     const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL
+
+
+    const navigate = useNavigate()
 
     // const slideImages = [
     //     "https://a0.muscache.com/im/pictures/miso/Hosting-668146487515150072/original/8ff2a532-e0cd-41a2-9164-554c4d9eb28a.jpeg?im_w=960",
@@ -76,11 +80,14 @@ const Card = (props) => {
                     <img className="favourite-icon" src="/assets/heart-icon.svg" alt="favourite-icon" />
                 </div>
 
-                <Carousel interval={null}>
+                <Carousel interval={null}  
+                onClick={(e) => { 
+                e.stopPropagation();
+                }}>
                     {
                         slideImages?.map((img, index) => (
                             <Carousel.Item key={index}>
-                                <div className="card-img">
+                                <div className="card-img" onClick={() => {navigate(`/places/${place._id}`)}}>
                                     <img
                                     className="d-block w-100"
                                     src={img}
