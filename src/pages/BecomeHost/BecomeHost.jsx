@@ -12,6 +12,7 @@ import Photos from "../../components/BecomeHost/Photos/Photos";
 import Prices from "../../components/BecomeHost/Prices/Prices";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthorizedAction } from "../../redux/actions";
+import { Circles } from "react-loader-spinner";
 
 const BecomeHost = () => {
 
@@ -32,9 +33,8 @@ const BecomeHost = () => {
 
     const [isFormSubmit, setIsFormSubmit] = useState(false)
 
-    // useEffect(() => {
-    //     console.log("xxxhdskjsladhj!!!", photos)
-    // }, [photos])
+    const [isLoading, setIsLoading] = useState(false)
+
 
     const startForm = () => {
         navigate("structure")
@@ -63,49 +63,47 @@ const BecomeHost = () => {
 
     //needed to filled up previous questions before see the next endpoints
     useEffect(() => {
-        if(path === "/privacy-type") {
-            if(structure === null) {
-                navigate("/become-a-host/structure")
-            }
-        }
-        if(path === "/location") {
-            if(privacyType === null) {
-                navigate("/become-a-host/privacy-type")
-            }
-        }
-        if(path === "/floor-plan") {
-            if(locationObj === null) {
-                navigate("/become-a-host/location")
-            }
+        // if(path === "/privacy-type") {
+        //     if(structure === null) {
+        //         navigate("/become-a-host/structure")
+        //     }
+        // }
+        // if(path === "/location") {
+        //     if(privacyType === null) {
+        //         navigate("/become-a-host/privacy-type")
+        //     }
+        // }
+        // if(path === "/floor-plan") {
+        //     if(locationObj === null) {
+        //         navigate("/become-a-host/location")
+        //     }
 
-        }
-        if(path === "/photos") {
-            if(floorPlanObj === null) {
-                navigate("/become-a-host/floor-plan")
-            }
-        }
-        if(path === "/prices") {
-            if(photos === null) {
-                navigate("/become-a-host/photos")
-            }
-        }
+        // }
+        // if(path === "/photos") {
+        //     if(floorPlanObj === null) {
+        //         navigate("/become-a-host/floor-plan")
+        //     }
+        // }
+        // if(path === "/prices") {
+        //     if(photos === null) {
+        //         navigate("/become-a-host/photos")
+        //     }
+        // }
 
     }, [path])
 
     useEffect(() => {
         if(isFormSubmit === true) {
-
             new Promise(async (resolve, reject) => {
+                setIsLoading(true)
                 try {
                     //first we upload the images and getting cloudinary urls
 
                     const formData = new FormData();
                     // formData.append("placeImages", event.target.files[0]);
-                    photos.forEach((photo) =>  
-                        {formData.append("placeImages", photo)}
+                    photos.forEach((photo) =>  {
+                        formData.append("placeImages", photo)}
                     )
-                    
-                    console.log(formData)
                     const options = {
                         method: "POST",
                         body: formData
@@ -141,6 +139,7 @@ const BecomeHost = () => {
                                 if(response.ok) {
                                     const {_id} = await response.json();
                                     console.log("new place created. ID: ", _id)
+                                    setIsLoading(false)
                                     navigate("/")
                                     resolve(_id)
                                 } else {
@@ -171,6 +170,16 @@ const BecomeHost = () => {
     return <>{ isAuthorized &&  <div>
             <BecomeHostNavbar/>
             <div className="become-host d-flex justify-content-center align-items-center">
+                    <div className= {isLoading && "loading-div"}>
+                        <div>
+                            <Circles
+                                type="Spinner Type"
+                                visible={isLoading}
+                                color="#FF385C"
+                            />
+                        </div>
+                        
+                    </div>
                 
                     { 
                     (path === "/become-a-host") && 
