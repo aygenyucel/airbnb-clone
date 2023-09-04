@@ -63,32 +63,32 @@ const BecomeHost = () => {
 
     //needed to filled up previous questions before see the next endpoints
     useEffect(() => {
-        // if(path === "/privacy-type") {
-        //     if(structure === null) {
-        //         navigate("/become-a-host/structure")
-        //     }
-        // }
-        // if(path === "/location") {
-        //     if(privacyType === null) {
-        //         navigate("/become-a-host/privacy-type")
-        //     }
-        // }
-        // if(path === "/floor-plan") {
-        //     if(locationObj === null) {
-        //         navigate("/become-a-host/location")
-        //     }
+        if(path === "/privacy-type") {
+            if(structure === null) {
+                navigate("/become-a-host/structure")
+            }
+        }
+        if(path === "/location") {
+            if(privacyType === null) {
+                navigate("/become-a-host/privacy-type")
+            }
+        }
+        if(path === "/floor-plan") {
+            if(locationObj === null) {
+                navigate("/become-a-host/location")
+            }
 
-        // }
-        // if(path === "/photos") {
-        //     if(floorPlanObj === null) {
-        //         navigate("/become-a-host/floor-plan")
-        //     }
-        // }
-        // if(path === "/prices") {
-        //     if(photos === null) {
-        //         navigate("/become-a-host/photos")
-        //     }
-        // }
+        }
+        if(path === "/photos") {
+            if(floorPlanObj === null) {
+                navigate("/become-a-host/floor-plan")
+            }
+        }
+        if(path === "/prices") {
+            if(photos === null) {
+                navigate("/become-a-host/photos")
+            }
+        }
 
     }, [path])
 
@@ -183,20 +183,22 @@ const BecomeHost = () => {
                 
                     { 
                     (path === "/become-a-host") && 
-                    <div style={{paddingInline: "50px"}}>
+                    <div className="d-flex flex-column justify-content-center" style={{paddingInline: "150px"}}>
                         <div className="d-flex flex-row align-items-center justify-content-center" >
                             <div className="col-6 pe-5">
                                 <div className="mb-4" style={{fontWeight : 700, fontSize: "2.6rem", textAlign: "left", lineHeight:"50px"}}>
                                     Tell us about your place
                                 </div>
-                                <div style={{textAlign: "left"}}>In this step, we'll ask you which type of property you have and if guests will book the entire place or just a room. Then let us know the location and how many guests can stay.</div>
+                                <div style={{textAlign: "left", fontSize:"1.1rem"}}>
+                                Fames ac turpis egestas sed tempus urna et pharetra pharetra. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Posuere urna nec tincidunt praesent. 
+                                </div>
                             </div>
                             <div className="col-6">
                                 <img src="assets/place-sample.png" alt="place-sample" />
                             </div>
                         
                         </div>
-                        <Button onClick={() => startForm()}>Get started</Button>
+                        <button  className= "become-host-next-button" onClick={() => startForm()}>Get started</button>
                     </div>
                     }
                     <div className="become-host-frame d-flex flex-column ">

@@ -24,7 +24,9 @@ const Prices = (props) => {
                         <div className="input-price-header form-header d-flex justify-content-start">Price</div>
                         <Form.Control className="input-additional form-input shadow-none" type="number" placeholder="Daily price" onChange={(e) => setPrice(e.target.value)} required/>
                     </Form.Group>
-                    <Button type="submit">Next</Button>
+                    <div style={{textAlign:"right"}}>
+                    <button className="become-host-next-button" type="submit">Next</button>
+                    </div>
                 </Form>
             </div>
         </div>

@@ -140,7 +140,9 @@ const Photos = (props) => {
                             </CustomTooltip>
                         </div>
                     </div>
-                    <Button type="submit">Next</Button>
+                    <div style={{textAlign:"right"}}>
+                    <button className="become-host-next-button" type="submit">Next</button>
+                    </div>
             </Form>
         </div>
     )

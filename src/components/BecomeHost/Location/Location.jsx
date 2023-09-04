@@ -61,7 +61,7 @@ const Location = (props) => {
                                 Your address is only shared with guests after they’ve made a reservation.
                             </div>
                             <Form onSubmit={handleSubmit}>
-                                <div className="location-form">
+                                <div className="location-form ">
                                     <Form.Group className="px-3 mb-3 form-group d-flex flex-column justify-content-center form-frame">
                                         <div className="input-country-header form-header d-flex justify-content-start">Country *</div>
                     
@@ -117,7 +117,9 @@ const Location = (props) => {
                                         </Form.Group>
                                     </div>
                                 </div>
-                            <Button type="submit">Next</Button>
+                                <div style={{textAlign:"right"}}>
+                                <button className="become-host-next-button" type="submit">Next</button>
+                                </div>
                             </Form>
 
                         </div>

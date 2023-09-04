@@ -109,7 +109,9 @@ const FloorPlan = (props) => {
                         
                         
                     </div>
-                    <Button onClick={() => {submitFloorPlanAndNext()}}>Next</Button>
+                    <div style={{textAlign:"right"}} className="mt-4">
+                    <button className="become-host-next-button" onClick={() => {submitFloorPlanAndNext()}}>Next</button>
+                    </div>
                 </div>
     )
 }

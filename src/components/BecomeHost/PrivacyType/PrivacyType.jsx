@@ -18,7 +18,7 @@ const PrivacyType = (props) => {
     }, [selected])
 
     return (
-        <div className="container">
+        <div className="container d-flex flex-column align-items-end">
             <div className="d-flex row g-3">
                 <div className="place-question col-12 d-flex justify-content-left align-items-left mb-3"> 
                     What type of place will guests have?
@@ -43,7 +43,7 @@ const PrivacyType = (props) => {
                 </div> 
                 
             </div>
-            <Button onClick={() => {submitPrivacyTypeAndNext()}}>Next</Button>
+            <button className="become-host-next-button" onClick={() => {submitPrivacyTypeAndNext()}}>Next</button>
         </div>
 
     )
