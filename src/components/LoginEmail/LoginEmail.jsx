@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { checkEmailExistAction, signupLoginEmailAction } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import moment from 'moment';
+
 
 const LoginEmail = () => {
     const [isEmailExist, setIsEmailExist] = useState(true);
@@ -14,7 +17,7 @@ const LoginEmail = () => {
     const [email, setEmail] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
-    const [birthDate, setBirthDate] = useState()
+    const [birthDate, setBirthDate] = useState(null)
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
@@ -56,6 +59,9 @@ const LoginEmail = () => {
             birthDate: birthDate,
             password: password
         }
+
+        //if user at least 18 years old, check email and save 
+        if(birthdayValidation(birthDate)) {
             checkEmailExistAction(email).then(email => {
                 if(email === null) {
                     signupLoginEmailAction(newUser)
@@ -72,6 +78,10 @@ const LoginEmail = () => {
                     navigate("/signup_login", {state:{redirectEmailLogin: true}})
                 }
             })
+        } else {
+            console.log("invalid birthday")
+        }
+            
     }
 
     const loginSubmit = (e) => {
@@ -88,6 +98,15 @@ const LoginEmail = () => {
         .then(() => navigate("/"))
         .catch((error) => console.log(error))
     }
+
+    function birthdayValidation(birthday) {
+        const newBirthDate = new Date(birthday);
+        const diff = Date.now() - newBirthDate.getTime();
+        const ageDate = new Date(diff);
+        let age = Math.abs(ageDate.getUTCFullYear() - 1970);
+        console.log("age", age)
+        return age > 18;
+      }
 
     return (
         <>
@@ -143,13 +162,24 @@ const LoginEmail = () => {
                                                             </Form.Group>
                                                         </div>
                                                         <div className="input-explanation">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</div>
+                                                        
                                                         <div className="form-group-div">
                                                             <Form.Group className="px-3 form-group form-group-birthdate d-flex flex-column justify-content-center">                                                    
                                                                 <div className="input-birthdate-header form-header d-flex justify-content-start">Birthdate</div>
-                                                                <Form.Control className="input-lastname form-input shadow-none" type="date" placeholder="Birthdate" onChange={(e) => {setBirthDate(e.target.value)}} required/>
+                                                                <Form.Control 
+                                                                    className="input-lastname form-input shadow-none" 
+                                                                    type="date" 
+                                                                    placeholder="Birthdate" 
+                                                                    onChange={(e) => {
+                                                                        const newDate = moment(new Date(e.target.value)).format('YYYY-MM-DD');
+                                                                        setBirthDate(newDate)
+                                                                    }} 
+                                                                    required
+                                                                />
                                                             </Form.Group>
+                                                           
                                                         </div>
-                                                        <div className="input-explanation">To sign up, you need to be at least 18. Your Birthday won't be shared with other people who use Airbnb Clone.</div>
+                                                        <div className="input-explanation" style={{color: !birthdayValidation(birthDate)&&"red"}}>To sign up, you need to be at least 18. Your Birthday won't be shared with other people who use Airbnb Clone.</div>
                                                         <div className="form-group-div">
                                                             <Form.Group className="px-3 form-group form-group-email d-flex flex-column justify-content-center">
                                                                 <div className="input-email-header form-header d-flex justify-content-start">Username</div>
