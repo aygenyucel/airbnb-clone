@@ -1,13 +1,14 @@
 import { useRef, useState } from "react";
 import { links } from "../../assets/images-links.js"
 import "./filter.scss"
+import { useEffect } from "react";
 
-const Filter = () => {
+const Filter = (props) => {
     const ref = useRef(null);
     const [scrollX, setScrollX] = useState(0); // For detecting start scroll postion
     const [scrollEnd, setScrollEnd] = useState(false); // For detecting end of scrollin
 
-    const windowSize = useRef([window.innerWidth, window.innerHeight])
+    const [selectedStructure, setSelectedStructure] = useState(null)
 
     const slide = (shift) => {
         ref.current.scrollLeft += shift - 55;
@@ -23,6 +24,19 @@ const Filter = () => {
             setScrollEnd(false);
         }
     }
+
+    const selectStructure = (e) => {
+        if(e.target.innerText !== ""){
+            setSelectedStructure(e.target.innerText )
+        } else {
+            setSelectedStructure(e.target.alt)
+        }
+        console.log(e)
+    }
+
+    useEffect(() => {
+        props.structure(selectedStructure)
+    }, [selectedStructure])
     
     return (
         <>
@@ -34,10 +48,11 @@ const Filter = () => {
             )}
             <div className="filter-categories d-flex "  ref={ref}>
                 {links.map((filter, i) => (
-                    <div key={i} className="links-box d-flex flex-column align-items-center justify-content-center">
-                        <img src={filter.imgSrc} alt={filter.label} />
-                        <div>{filter.label}</div>
-                        <div className="selected-filter-line"></div>
+                    
+                    <div key={i} className={` links-box d-flex flex-column align-items-center justify-content-center `} defaultValue={filter.label} onClick={selectStructure}>
+                        <img src={filter.imgSrc} alt={filter.label} defaultValue={filter.label} /> 
+                        <div  defaultValue={filter.label}>{filter.label}</div>
+                        <div className={`selected-filter-line`}  defaultValue={filter.label}></div>
                     </div>
                 ))}
             </div>
