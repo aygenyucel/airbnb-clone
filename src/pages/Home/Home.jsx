@@ -75,7 +75,7 @@ const Home = () => {
                 <MainNavbar isHomePage= {true}/>
             
             <Filter/>
-            {isAuthorized && <div>Authorized!!!!!!!!!!!!!!!!! {userData?.email}</div>}
+            {/* {isAuthorized && <div>Authorized!!!!!!!!!!!!!!!!! {userData?.email}</div>} */}
             <div className="home-page-cards d-flex flex-row">
                     <div className="row justify-content-center">
                         {allPlaces?.map((place) => 

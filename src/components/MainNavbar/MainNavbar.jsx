@@ -181,7 +181,7 @@ const MainNavbar = (props) => {
                 open= {isTooltipAirbnbOpen}
                 title={
                   <div className='d-flex jsutify-content-center align-items-center'>
-                     <div textAlign={'center'} >You can add a fake airbnb place from here!</div>
+                     <div textAlign={'center'} >You can add a fake airbnb place in seconds!</div>
                     
                     <div className='d-flex justify-content-end'>
                       <CloseButton onClick={() => {setIsTooltipAirbnbOpen(false)}} />

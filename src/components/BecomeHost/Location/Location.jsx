@@ -42,18 +42,18 @@ const Location = (props) => {
             
                         <div className="d-flex row g-3 justify-content-left align-items-left">
                         <CustomTooltip
-             open= {isTooltipLocationOpen}
-             title= {
-                <div className="d-flex align-items-center">
-                    <div className='d-flex flex-column justify-content-center align-items-center'>
-                            <div textAlign={'center'} className="mb-2" >You are only allowed to select country and city for the security reasons.</div>                        
-                        </div>
-                    <div className='d-flex justify-content-end'>
-                    <CloseButton onClick={() => {setIsTooltipLocationOpen(false)}} />
-                </div>
-                </div>}
-            placement='top-end'
-            />
+                            open= {isTooltipLocationOpen}
+                            title= {
+                                <div className="d-flex align-items-center">
+                                    <div className='d-flex flex-column justify-content-center align-items-center'>
+                                            <div textAlign={'center'} className="mb-2" >You are only allowed to select country and city for the security reasons.</div>                        
+                                        </div>
+                                    <div className='d-flex justify-content-end'>
+                                    <CloseButton onClick={() => {setIsTooltipLocationOpen(false)}} />
+                                    </div>
+                                </div>}
+                            placement='top-end'
+                        />
                             <div className="place-question d-flex mb-3 text-start"> 
                                 Where's your place located?
                             </div>
@@ -77,31 +77,31 @@ const Location = (props) => {
                                         <Form.Group className=" px-3 form-group d-flex flex-column justify-content-center">
                                             <div className=" input-town-header form-header d-flex justify-content-start">Town / neighborhood</div>
                                             
-                                            <Form.Control className="not-allowed input-town form-input shadow-none" type="string" placeholder="Town / neighborhood" onChange={(e) => setTown(e.target.value)}/>
+                                            <Form.Control className="not-allowed input-town form-input shadow-none" type="string" placeholder="Town / neighborhood" onChange={(e) => setTown(e.target.value)} disabled/>
                                         </Form.Group>
                                         <div className="form-divider"/>
                                         <Form.Group className="px-3 form-group d-flex flex-column justify-content-center">
                                             <div className="input-street-header form-header d-flex justify-content-start">Street address</div>
                                             
-                                            <Form.Control className="not-allowed input-street form-input shadow-none" type="string" placeholder="Street address" onChange={(e) => setStreetAddress(e.target.value)}/>
+                                            <Form.Control className="not-allowed input-street form-input shadow-none" type="string" placeholder="Street address" onChange={(e) => setStreetAddress(e.target.value)} disabled/>
                                         </Form.Group>
                                         <div className="form-divider"/>
                                         <Form.Group className="px-3 form-group d-flex flex-column justify-content-center">
                                             <div className="input-additional-header form-header d-flex justify-content-start">Additional</div>
                                             
-                                            <Form.Control className="not-allowed input-additional form-input shadow-none" type="string" placeholder="Unit, floor, bldg, etc. (if applicable)" onChange={(e) => setAdditional(e.target.value)}/>
+                                            <Form.Control className="not-allowed input-additional form-input shadow-none" type="string" placeholder="Unit, floor, bldg, etc. (if applicable)" onChange={(e) => setAdditional(e.target.value)} disabled/>
                                         </Form.Group>
                                         <div className="form-divider"/>
                                         <Form.Group className="px-3 form-group d-flex flex-column justify-content-center">
                                             <div className="input-postal-header form-header d-flex justify-content-start">Postal code</div>
                                             
-                                            <Form.Control className="not-allowed input-postal form-input shadow-none" type="string" placeholder="Postal code (if applicable)" onChange={(e) => setPostalCode(e.target.value)}/>
+                                            <Form.Control className="not-allowed input-postal form-input shadow-none" type="string" placeholder="Postal code (if applicable)" onChange={(e) => setPostalCode(e.target.value)} disabled/>
                                         </Form.Group>
                                         <div className="form-divider"/>
                                         <Form.Group className="px-3 form-group d-flex flex-column justify-content-center">
                                             <div className="input-district-header form-header d-flex justify-content-start">District, subdistrict</div>
                                             
-                                            <Form.Control className="not-allowed input-disctrict form-input shadow-none" type="string" placeholder="District, subdistrict" onChange={(e) => setDistrict(e.target.value)}/>
+                                            <Form.Control className="not-allowed input-disctrict form-input shadow-none" type="string" placeholder="District, subdistrict" onChange={(e) => setDistrict(e.target.value)} disabled/>
                                         </Form.Group>
                                         <div className="form-divider"/>
                                         <Form.Group className="px-3 form-group d-flex flex-column justify-content-center">

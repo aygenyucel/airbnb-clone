@@ -132,10 +132,12 @@ const Photos = (props) => {
                                 ? <button className="random-images-button " disabled>
                                     Images are loaded successfully!
                                 </button>
-                                : <button className="random-images-button" onClick={()=> { loadRandomImages()}}>
+                                :<>
+                                    <button className="random-images-button" onClick={()=> { loadRandomImages()}}>
                                     Load random place images
                                     
-                                </button>
+                                    </button>
+                                </> 
                                 }
                             </CustomTooltip>
                         </div>
