@@ -42,7 +42,7 @@ const Filter = () => {
                 ))}
             </div>
             {!scrollEnd && (
-                <div className="right-arrow d-flex align-items-center justify-content-center" onClick={() => slide(+ref.current.offsetWidth)} >
+                <div className="right-arrow align-items-center justify-content-center" onClick={() => slide(+ref.current.offsetWidth)} >
                     <img src="assets/right-arrow.png" alt="right arrow" />
                 </div>
             )}

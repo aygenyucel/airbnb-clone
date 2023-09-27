@@ -6,6 +6,10 @@
     // position: fixed;
     background-color: white;
     z-index: 999;
+
+    @media screen and (max-width: 745px) {
+        height: 40px;
+    }
 }
 
 // .filler {
@@ -34,7 +38,14 @@
             margin-bottom: 4px;
             // filter: brightness(0) saturate(100%) invert(44%) sepia(9%) saturate(8%) hue-rotate(350deg) brightness(97%) contrast(84%);
             filter: brightness(0) saturate(100%) invert(32%) sepia(6%) saturate(4%) hue-rotate(322deg) brightness(99%) contrast(95%);
-                }
+        
+            @media screen and (max-width: 745px) {
+                height: 27px;
+                width: 27px;
+            }
+        
+        }
+                
         div {
             font-size: 0.8rem;
             font-weight: 700;
@@ -72,6 +83,7 @@
     img {
         height: 10px;
         width: 10px;
+        
     }
     height: 28px;
     width: 28px;
@@ -82,8 +94,10 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    
 
+    @media screen and (max-width: 745px) {
+        display: none;
+    }
 
 }
 

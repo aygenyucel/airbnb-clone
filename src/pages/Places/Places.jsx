@@ -166,12 +166,12 @@ const Places = () => {
                         
                     </div>
                     </div>
-                    <div className='place-main d-flex'>
+                    <div className='place-main d-flex justify-content-between'>
                         <div className='place-about '>
                             <div className='place-about-heading d-flex justify-content-between'>
                                 <div className='d-flex flex-column'>
-                                    <div className='place-about-text d-flex'>
-                                        <span className='me-1'>{privacyType}</span> hosted by <span className='ms-1'>{username}</span>
+                                    <div className='place-about-text'>
+                                        <span className='me-1'>{privacyType}</span>hosted by<span className='ms-1'>{username}</span>
                                     </div>
                                     <div className='place-about-floor-plan d-flex'>
                                         <span className='me-1 guests'>{floorPlan?.numOfGuests}</span>
@@ -254,7 +254,7 @@ const Places = () => {
 
                         </div>
 
-                        <div className='place-reservation d-flex flex-column form-frame-light form-shadow'>
+                        <div className='place-reservation flex-column form-frame-light form-shadow'>
                             <div className='d-flex align-items-center justify-content-between flex-wrap mb-2'>
                                 <div className='d-flex align-items-center'>
                                     <div className='me-1 '> <b>$ {placeData?.dailyPrice} </b></div>
@@ -304,6 +304,54 @@ const Places = () => {
                         </div>
 
                     </div>
+                    <div className='place-reservation-mobile flex-column form-frame-light form-shadow'>
+                            <div className='d-flex align-items-center justify-content-between flex-wrap mb-2'>
+                                <div className='d-flex align-items-center'>
+                                    <div className='me-1 '> <b>$ {placeData?.dailyPrice} </b></div>
+                                    
+                                </div>
+                                <div className='reservation-rating-review d-flex align-items-end'> 
+                                    <div className='rating'>
+                                       4.88
+                                    </div>
+                                    <div className='mx-1'>·</div>
+                                    
+                                    <div className='review me-1 '>64 </div>
+                                    <div> reviews</div>
+                                    
+                                </div>
+                            </div>
+                            <div className='d-flex reservation-form flex-column form-frame my-2'>
+                                <div className='d-flex check-date'>
+                                    <div className='check-in d-flex flex-column'>
+                                        <div>CHECK-IN</div>
+                                        <div className='checkin-date'>9/16/2023</div>
+                                    </div>
+                                    
+                                    <div className='check-out d-flex flex-column'>
+                                        <div>CHECKOUT</div>
+                                        <div className='checkout-date'>9/16/2023</div>
+                                    </div>
+                                </div>
+                                <div className='form-divider'></div>
+                                <div className='check-guests d-flex flex-column'>
+                                    <div>GUESTS</div>
+                                    <div className='guest-number'>1 Guest</div>
+                                </div>
+                            </div>
+                            <div className='main-button d-flex justify-content-center align-items-center my-2'>Reserve</div>
+                            {/* <div className='d-flex justify-content-center mx-2'>You won't be charged yet</div> */}
+                            <div className='d-flex justify-content-between mt-3'>
+                                <div > <u>$ {placeData?.dailyPrice} x 5 nights</u></div>
+                                <div>$ {placeData?.dailyPrice * 5}</div>
+                            </div>
+                            <div className='form-divider-light my-4'></div>
+                            <div className='d-flex justify-content-between fw-bold'>
+                                <div>Total before taxes</div>
+                                <div>$ {placeData?.dailyPrice * 5}</div>
+                            </div>
+                            
+                        </div>
                 </div>
             </>)
 }

@@ -2,6 +2,10 @@
     padding-top: 100px;
 }
 
+.become-host-frame{
+    padding-inline: 50px;
+}
+
 .place-structure {
     max-width: 700px;
     padding-inline: 35px;
@@ -17,6 +21,7 @@
         border:2px solid black;
         cursor: pointer;
     }
+    height: 100%;
 }
 .selected-structure, .selected-privacy-type {
     padding: 18px;
@@ -47,7 +52,8 @@
     border: 1px dashed var(--color-gray-light);
 
     @media (max-width:801px) {
-        height: 220px;
+        height: 300px;
+        
     }
 }
 
@@ -63,3 +69,21 @@
     margin-block: 20px;
 }
 
+
+.place-sample-img {
+    padding-left: 30px;
+    max-width:350px;
+    img{
+        width: 100%;
+    }
+    @media screen and (max-width: 745px) {
+        display: none;
+    }
+}
+
+.become-a-host-div {
+    margin-inline: 140px;
+    @media screen and (max-width: 765px) {
+        margin-inline: 50px;
+    }
+}

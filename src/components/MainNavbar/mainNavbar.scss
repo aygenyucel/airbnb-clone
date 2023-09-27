@@ -15,10 +15,25 @@
     a:hover{
         text-decoration: none;
         color: black;
-    }
-
-    
+    } 
 }
+
+.mainNavbar-mobile {
+        display: none;
+}
+
+.mainNavbar-desktop {
+    // @media screen and (max-width: 745px) {
+    //     display: none;
+    // }
+    .customToolTip {
+        display: none;
+    }
+}
+
+
+
+
 .logo {
     text-decoration: none;
 }
@@ -57,9 +72,13 @@
 .mainNavbar-middle-div {
     align-items: center;
     justify-content: center;
+    display: flex;
 
     @media screen and (max-width: 950px) {
         justify-content: start;
+    }
+    @media screen and (max-width: 745px) {
+        display: none;
     }
 
 }
@@ -77,6 +96,12 @@
     white-space: nowrap;
     align-items: center;
     justify-content: center;
+
+    @media screen and (max-width: 860px) {
+        padding-block: 5px;
+        padding-left: 15px;
+
+    }
    
 
     .mainNavbar-middle-link {
@@ -86,10 +111,13 @@
         text-overflow: ellipsis;
         white-space: nowrap;
 
-        @media screen and (max-width: 795px) {
-            width: 66px;
+        @media screen and (max-width: 860px) {
+            width: 45px;
         }
+
+        
     }
+    
 
     .link-anywhere, .link-anyweek {
         font-weight: 700;
@@ -107,6 +135,9 @@
     //     justify-content: start;
     //     background-color: aqua;
     // }
+    @media screen and (max-width: 745px) {
+        display: none;
+    }
 }
 
 
@@ -139,6 +170,7 @@
     }
 
     .link-airbnbYourHome, .link-switchToHosting{
+        display: flex;
         font-weight: 700;
         text-decoration: none;
         border-radius: 50px;
@@ -149,6 +181,16 @@
         &:hover {
             background-color: var(--color-gray-lightest);
         }
+
+        @media screen and (max-width: 860px) {
+            padding-inline: 0px;
+        }
+
+        @media screen and (max-width: 375px) {
+            display: none;
+        }
+        
+        
     }
 
     .profile {
@@ -183,9 +225,9 @@
         }
     }
 
-    @media screen and (max-width: 745px) {
-        display: none;
-    }
+    // @media screen and (max-width: 745px) {
+    //     display: none;
+    // }
 }
 
 .profile-dropdown-menu {

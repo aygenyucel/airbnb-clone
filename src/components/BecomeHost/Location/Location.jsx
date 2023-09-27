@@ -16,7 +16,7 @@ const Location = (props) => {
     const [city, setCity] = useState("")
     const [additional, setAdditional] = useState("")
 
-    const [isTooltipLocationOpen, setIsTooltipLocationOpen] = useState(true)
+    const [isTooltipLocationOpen, setIsTooltipLocationOpen] = useState(false)
 
 
     const handleSubmit = (e) => {

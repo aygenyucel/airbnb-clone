@@ -183,22 +183,26 @@ const BecomeHost = () => {
                 
                     { 
                     (path === "/become-a-host") && 
-                    <div className="d-flex flex-column justify-content-center" style={{paddingInline: "150px"}}>
+                    <div className="become-a-host-div d-flex flex-column justify-content-center ">
                         <div className="d-flex flex-row align-items-center justify-content-center" >
-                            <div className="col-6 pe-5">
+                            <div className="col-md-6 col-12">
                                 <div className="mb-4" style={{fontWeight : 700, fontSize: "2.6rem", textAlign: "left", lineHeight:"50px"}}>
                                     Tell us about your place
                                 </div>
                                 <div style={{textAlign: "left", fontSize:"1.1rem"}}>
                                 Fames ac turpis egestas sed tempus urna et pharetra pharetra. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Posuere urna nec tincidunt praesent. 
                                 </div>
+                                <div style={{textAlign: "left"}}>
+                                    <button  className= "become-host-next-button" onClick={() => startForm()}>Get started</button>
+                                </div>
+
                             </div>
-                            <div className="col-6">
+                            <div className="col-md-6 place-sample-img">
                                 <img src="assets/place-sample.png" alt="place-sample" />
                             </div>
                         
                         </div>
-                        <button  className= "become-host-next-button" onClick={() => startForm()}>Get started</button>
+                        
                     </div>
                     }
                     <div className="become-host-frame d-flex flex-column ">
