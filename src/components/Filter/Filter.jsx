@@ -2,11 +2,14 @@ import { useRef, useState } from "react";
 import { links } from "../../assets/images-links.js"
 import "./filter.scss"
 import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Filter = (props) => {
     const ref = useRef(null);
     const [scrollX, setScrollX] = useState(0); // For detecting start scroll postion
     const [scrollEnd, setScrollEnd] = useState(false); // For detecting end of scrollin
+    const [searchParams, setSearchParams] = useSearchParams();
+
 
     const [selectedStructure, setSelectedStructure] = useState(null)
 
@@ -35,8 +38,16 @@ const Filter = (props) => {
     }
 
     useEffect(() => {
+        //sending selectedStructure value to its parent component (home page)
         props.structure(selectedStructure)
     }, [selectedStructure])
+
+
+    //every time search params changes in the url, update the selectedStructure value
+    useEffect(() => {
+        const newStructure = searchParams.get("structure");
+        setSelectedStructure(newStructure)
+    }, [searchParams])
     
     return (
         <>
@@ -48,8 +59,7 @@ const Filter = (props) => {
             )}
             <div className="filter-categories d-flex "  ref={ref}>
                 {links.map((filter, i) => (
-                    
-                    <div key={i} className={` links-box d-flex flex-column align-items-center justify-content-center `} defaultValue={filter.label} onClick={selectStructure}>
+                    <div key={i} className={` links-box d-flex flex-column align-items-center justify-content-center ${filter.label === selectedStructure && `selected-box`}` } defaultValue={filter.label} onClick={selectStructure}>
                         <img src={filter.imgSrc} alt={filter.label} defaultValue={filter.label} /> 
                         <div  defaultValue={filter.label}>{filter.label}</div>
                         <div className={`selected-filter-line`}  defaultValue={filter.label}></div>

@@ -63,10 +63,21 @@
 
             border-bottom: 2px solid var(--color-gray-lighter);
             
-            
         }
         
 
+    }
+
+    .selected-box {
+        img {
+            filter: none;
+            
+        }
+        div {
+            color: black;
+        }
+
+        border-bottom: 2px solid var(--color-gray-lighter);
     }
     .links-box:not(:last-child) {
         margin-right: 40px;
