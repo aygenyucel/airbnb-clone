@@ -21,7 +21,7 @@ const Home = () => {
 
     //fetch all places and check if user authorized
     useEffect(() => {
-        fetchPlaces().then((places) => {setAllPlaces(places)});
+        // fetchPlaces().then((places) => {setAllPlaces(places)});
 
         isAuthorizedAction(userData, dispatch)
         .then((boolean) => {
