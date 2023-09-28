@@ -1,7 +1,7 @@
 export const GET_USER = 'GET_USER';
 export const GET_USER_ID = 'GET_USER_ID'
 
-const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL;
+const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL || process.env.REACT_APP_BE_PROD_URL;
 
 export const checkEmailExistAction = (email) => {
     

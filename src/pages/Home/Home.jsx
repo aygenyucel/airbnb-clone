@@ -17,7 +17,7 @@ const Home = () => {
     const [isAuthorized, setIsAuthorized] = useState(false);
     const [allPlaces, setAllPlaces] = useState(null)
     const [filteredStructure, setFilteredStructure] = useState(null)
-    const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL
+    const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL || process.env.REACT_APP_BE_PROD_URL
 
     //fetch all places and check if user authorized
     useEffect(() => {
