@@ -3,6 +3,7 @@ import MainNavbar from './../../components/MainNavbar/MainNavbar';
 import "./places.scss"
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Container, Row } from 'react-bootstrap';
 const Places = () => {
 
     const {placeID} = useParams();
@@ -16,6 +17,8 @@ const Places = () => {
     const [privacyType, setPrivacyType] = useState(null)
     const [userData, setUserData] = useState(null)
     const [username, setUsername] = useState(null)
+
+    const [isPlaceImageClicked, setIsPlaceImageClicked] = useState(false)
 
     useEffect(() => {
         //fetching the place informations
@@ -86,8 +89,84 @@ const Places = () => {
         })
     }
 
+    const [clickedImageNumber, setClickedImageNumber] = useState()
+    const openPlaceImages = (e) => {
+        setIsPlaceImageClicked(true)
+        setClickedImageNumber(e.target.alt.replace("image ", "")-1)
+        console.log(e.target.alt.replace("image ", ""))
+    }
+    const closePlaceImages = () => {
+        setIsPlaceImageClicked(false)
+    }
+
+    const showPreviousImage = () => {
+        if(clickedImageNumber > 0 ) {
+            setClickedImageNumber(clickedImageNumber-1)
+        }
+    }
+
+    const showNextImage = () => {
+        if(clickedImageNumber < images.length -1) {
+            setClickedImageNumber(clickedImageNumber+1)
+        }
+    }
+
+
 
     return (<>
+                {isPlaceImageClicked ?
+                <>{images && 
+                    <div className='place-images-window d-flex flex-column'>
+                            <div className='place-images-window-controls d-flex  align-items-center'>
+                                <div className='col-4 d-flex align-items-center' onClick={closePlaceImages} style={{cursor: "pointer"}}>
+                                    <div className='d-flex align-items-center me-1'>
+                                        <img src="/assets/close-icon-white.png" alt="heart-icon" style={{height:"15px", width:"15px"}}/>
+                                    </div>
+                                    <div>
+                                        Close
+                                    </div>
+                                </div>
+                                <div className='col-4'>
+                                    {clickedImageNumber+1}/{images.length}
+                                </div>
+                                <div className='col-4 d-flex align-items-center justify-content-end'>
+                                    <img src="/assets/heart-icon-white.png" alt="heart-icon" style={{height:"17px", width:"17px"}}/>
+                                </div>
+                            </div>
+                            
+                            <div className='place-images-window-frame d-flex align-items-center justify-content-center'>
+                                    <Row className='place-images-window-frame'>
+                                        <div className='place-images-window-frame-left-arrow d-none d-sm-flex col-1 justify-content-start p-0'>
+                                            {clickedImageNumber > 0 && 
+                                                <div className='d-flex align-items-center me-1' onClick={showPreviousImage} style={{cursor: "pointer"}}>
+                                                    <img src="/assets/left-arrow-white.png" alt="heart-icon" style={{height:"30px", width:"30px"}}/>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div className='col-sm-10 col-12 p-0 px-sm-3' d-flex >
+                                            {images?.[clickedImageNumber] ? 
+                                            <img className='clicked-place-image' src={images[clickedImageNumber]} alt={`image ${clickedImageNumber}`}/>
+                                            :
+                                            <img className='clicked-place-image' src="/assets/image-placeHolder.jpg" alt="image placeHolder" />
+
+                                            }
+                                        </div>
+                                        <div className='place-images-window-frame-right-arrow d-none d-sm-flex col-1 justify-content-end p-0 ' onClick={showNextImage} style={{cursor: "pointer"}}>
+                                            {clickedImageNumber +1 < images.length && 
+                                                <div className='d-flex align-items-center justify-content-end me-1'>
+                                                    <img src="/assets/right-arrow-white.png" alt="heart-icon" style={{height:"30px", width:"30px"}}/>
+                                                </div>
+                                            }
+                                            
+                                        </div>
+                                    </Row>
+                               
+                            </div>
+                    
+                    </div>
+                }</>
+                :
+                <>
                 <MainNavbar padding="80px"/>
                 <div className='places d-flex flex-column'>
                     <div className='place-heading'>
@@ -121,23 +200,21 @@ const Places = () => {
                     <div >
                     <div className='place-images row'>
                         
-                            <div className='col-6 image-left'>
+                            <div className='col-6 image-left' onClick={openPlaceImages}>
                                     {images && images[0]
                                     ? <img src={images[0]} alt="image 1" />
                                     : <img src="/assets/image-placeHolder.jpg" alt="image placeHolder" />}
-                                    
-                                
                             </div>
 
                             <div className='col-6'>
                                 <div className='row pb-2'>
-                                    <div className='col-6'>
+                                    <div className='col-6' onClick={openPlaceImages}>
                                         {images && images[1]
                                         ? <img src={images[1]} alt="image 2" />
                                         : <img src="/assets/image-placeHolder.jpg" alt="image placeHolder" />
                                         }
                                     </div>
-                                    <div className='col-6  image-right-top'>
+                                    <div className='col-6  image-right-top' onClick={openPlaceImages}>
                                         {images && images[2]
                                         ? <img src={images[2]} alt="image 3" />
                                         : <img src="/assets/image-placeHolder.jpg" alt="image placeHolder" />
@@ -145,14 +222,14 @@ const Places = () => {
                                     </div>
                                 </div>
                                 <div className='row'>
-                                    <div className='col-6'>
+                                    <div className='col-6' onClick={openPlaceImages}>
                                         {images && images[3]
                                         ? <img src={images[3]} alt="image 4" />
                                         : <img src="/assets/image-placeHolder.jpg" alt="image placeHolder" />
                                         }
 
                                     </div>
-                                    <div className='col-6 image-right-bottom'>
+                                    <div className='col-6 image-right-bottom' onClick={openPlaceImages}>
                                         {images && images[4]
                                         ? <img src={images[4]} alt="image 5" />
                                         : <img src="/assets/image-placeHolder.jpg" alt="image placeHolder" />
@@ -353,6 +430,11 @@ const Places = () => {
                             
                         </div>
                 </div>
+                </>
+                
+                
+                } 
+                
             </>)
 }
 
