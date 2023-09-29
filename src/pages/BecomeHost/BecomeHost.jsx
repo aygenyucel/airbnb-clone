@@ -35,6 +35,7 @@ const BecomeHost = () => {
 
     const [isLoading, setIsLoading] = useState(false)
 
+    const BE_URL = process.env.REACT_APP_BE_DEV_URL || process.env.REACT_APP_BE_PROD_URL
 
     const startForm = () => {
         navigate("structure")
@@ -109,7 +110,7 @@ const BecomeHost = () => {
                         body: formData
                     }
                     
-                    const response = await fetch(`${process.env.REACT_APP_BE_DEV_URL}/places/uploadImages`, options)
+                    const response = await fetch(`${BE_URL}/places/uploadImages`, options)
                     if(response.ok) {
                         //if we upload images successfully, we are creating newPlace object
                         //and save new place to db
@@ -135,7 +136,7 @@ const BecomeHost = () => {
                                 }
                             }
                             try {
-                                const response = await fetch(`${process.env.REACT_APP_BE_DEV_URL}/places`, options)
+                                const response = await fetch(`${BE_URL}/places`, options)
                                 if(response.ok) {
                                     const {_id} = await response.json();
                                     console.log("new place created. ID: ", _id)
