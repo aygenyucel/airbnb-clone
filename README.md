@@ -1,15 +1,9 @@
 # [BACKEND REPOSITORY URL](https://github.com/aygenyucel/airbnb-clone-be)
 
 -------
-
-
-
-
-
-
-
-
-
+</br>
+</br>
+</br>
 
 # Getting Started with Create React App
 
