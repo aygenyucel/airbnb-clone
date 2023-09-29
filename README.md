@@ -1,4 +1,4 @@
-# [BACKEND REPOSIORY URL](https://github.com/aygenyucel/airbnb-clone-be)
+# => [BACKEND REPOSITORY URL](https://github.com/aygenyucel/airbnb-clone-be)
 
 -------
 
