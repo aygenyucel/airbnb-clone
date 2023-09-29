@@ -7,7 +7,7 @@ import { Container, Row } from 'react-bootstrap';
 const Places = () => {
 
     const {placeID} = useParams();
-    const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL || process.env.REACT_APP_PROD_URL
+    const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL || process.env.REACT_APP_BE_PROD_URL
 
     const [placeData, setPlaceData] = useState(null);
 
