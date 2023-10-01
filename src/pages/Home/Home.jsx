@@ -39,7 +39,6 @@ const Home = () => {
 
     //whenever filtered structure changes, navigate the url with search query in it
     useEffect(() => {
-        console.log("beffffore", isPlacesLoading)
         if(filteredStructure){
             setIsPlacesLoading(true)
             navigate(`/?structure=${filteredStructure}`)
