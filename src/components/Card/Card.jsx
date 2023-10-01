@@ -15,7 +15,7 @@ const Card = (props) => {
     const [dailyPrice, setDailyPrice] = useState(null)
     const [placeUserID, setPlaceUserID] = useState(null)
     const [placeUserInfo, setPlaceUserInfo] = useState(null)
-    const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL
+    const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL || process.env.REACT_APP_BE_PROD_URL
 
 
     const navigate = useNavigate()
