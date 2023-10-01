@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { isAuthorizedAction } from "../../redux/actions";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { Circles } from "react-loader-spinner";
 
 const Home = () => {
     const userData = useSelector(state => state.userReducer?.data);
@@ -18,6 +19,8 @@ const Home = () => {
     const [allPlaces, setAllPlaces] = useState(null)
     const [filteredStructure, setFilteredStructure] = useState(null)
     const BE_DEV_URL = process.env.REACT_APP_BE_DEV_URL || process.env.REACT_APP_BE_PROD_URL
+
+    const [isPlacesLoading, setIsPlacesLoading] = useState(true)
 
     //fetch all places and check if user authorized
     useEffect(() => {
@@ -36,11 +39,18 @@ const Home = () => {
 
     //whenever filtered structure changes, navigate the url with search query in it
     useEffect(() => {
+        console.log("beffffore", isPlacesLoading)
         if(filteredStructure){
+            setIsPlacesLoading(true)
             navigate(`/?structure=${filteredStructure}`)
-            fetchPlaces()
+            fetchPlaces().then(() => {
+                setIsPlacesLoading(false)
+            })
         } else {
-            fetchPlaces()
+            setIsPlacesLoading(true)
+            fetchPlaces().then(() => {
+                setIsPlacesLoading(false)
+            })
         }
     }, [filteredStructure])
 
@@ -93,15 +103,29 @@ const Home = () => {
         <div className="home-page">
             <MainNavbar isHomePage= {true}/>
             <Filter structure = {(selectedStructure) => setFilteredStructure(selectedStructure)} />
-            <div className="home-page-cards d-flex flex-row">
-                <div className="row justify-content-center">
-                    {allPlaces?.reverse().map((place) => 
-                    <div className="col-lg-3 col-md-4 col-sm-6 col-12" onClick={() => navigate(`/places/${place._id}`)}>
-                            <Card place= {place}/>
-                        </div>
-                    )}
+
+            {isPlacesLoading ? 
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                    <Circles
+                        type="Spinner Type"
+                        visible={isPlacesLoading}
+                        color="#FF385C"
+                        width={"50px"}
+                    />
+                    <div className="mt-2" style={{color: "#FF385C", fontSize: "0.8rem"}}>Connecting to the backend may take some time..</div>
+                </div> : 
+                <div className="home-page-cards d-flex flex-row">
+                    <div className="row justify-content-start">
+                        {allPlaces?.reverse().map((place) => 
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-12" onClick={() => navigate(`/places/${place._id}`)}>
+                                <Card place= {place}/>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
+            }
+                
+            
         </div>
     )
 }

@@ -19,10 +19,10 @@ export const checkEmailExistAction = (email) => {
                 if(response.ok){
                     const data = await response.json();
                     const email = data;
-                    console.log("email exist! =>", email)
+                    // console.log("email exist! =>", email)
                     resolve({email})
                 } else {
-                    console.log("email not exist! =>", email);
+                    // console.log("email not exist! =>", email);
                     resolve(null)
                     // response.text()
                     
@@ -144,9 +144,9 @@ export const isAuthorizedAction = (userData, dispatch) => {
                          if(response.status === 401) {
                             //JWT token is invalid, try to get new access token using refresh token
                             const refreshToken = localStorage.getItem("refreshToken");
-                            console.log("!!!!!!!!!!!!!!!", refreshToken)
+                            // console.log("!!!!!!!!!!!!!!!", refreshToken)
                             if(refreshToken) {
-                                console.log("refresssh")
+                                // console.log("refresssh")
                                 //refreshtoken is available
                                 const response2 = await fetch(
                                     `${BE_DEV_URL}/users/signupLogin/refresh`,
@@ -204,7 +204,7 @@ export const isAuthorizedAction = (userData, dispatch) => {
                                         })
                 
                                     } else {
-                                        console.log(response);
+                                        // console.log(response);
                                         //redirect to login page
                                         resolve(false)
                                     }
